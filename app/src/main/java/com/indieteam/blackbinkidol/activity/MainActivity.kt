@@ -31,6 +31,22 @@ class MainActivity : AppCompatActivity() {
         getScreen()
         val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), VideoFragment())
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
+        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+            override fun onPageSelected(position: Int) {
+                when(position){
+                    0 -> bottom_navigation.selectedItemId = R.id.profile
+                    1 -> bottom_navigation.selectedItemId = R.id.song
+                    2 -> bottom_navigation.selectedItemId = R.id.album
+                    3 -> bottom_navigation.selectedItemId = R.id.mv
+                    else ->{}
+                }
+            }
+
+        })
         bottom_navigation.setOnNavigationItemSelectedListener{
             when(it.itemId){
                 R.id.profile ->{
@@ -54,11 +70,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         //disable swipe
-        view_pager.setOnTouchListener(object: View.OnTouchListener{
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                return true
-            }
-        })
+//        view_pager.setOnTouchListener(object: View.OnTouchListener{
+//            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+//                return true
+//            }
+//        })
     }
 
     private fun getScreen(){
