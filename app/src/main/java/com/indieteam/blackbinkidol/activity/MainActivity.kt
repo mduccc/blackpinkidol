@@ -4,27 +4,30 @@ import android.graphics.Point
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
-import android.view.View
+import android.util.Log
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.adapter.GirdviewAdapter
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
 import com.indieteam.blackbinkidol.fragment.AlbumFragment
-import com.indieteam.blackbinkidol.fragment.VideoFragment
 import com.indieteam.blackbinkidol.fragment.ProfileFragment
 import com.indieteam.blackbinkidol.fragment.SongFragment
+import com.indieteam.blackbinkidol.fragment.VideoFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class MainActivity : AppCompatActivity() {
 
     var sX = 0f
     var sY = 0f
+    lateinit var idol: List<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setUI()
+        init()
+    }
+
+    private fun init(){
+        idol = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21)
     }
 
     private fun setUI(){

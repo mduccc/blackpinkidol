@@ -16,6 +16,7 @@ class GirdviewAdapter(val context: Context, val layout: List<Int>): BaseAdapter(
         textView.let {
             it.text = layout[position].toString()
             it.gravity = Gravity.CENTER
+            it.height = ((context as MainActivity).sY*10).toInt()
         }
         return textView
     }

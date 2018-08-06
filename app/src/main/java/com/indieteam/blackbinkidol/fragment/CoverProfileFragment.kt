@@ -22,6 +22,6 @@ class CoverProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bg_cover_profile.layoutParams.height = ((context as MainActivity).sY*35).toInt()
-        bg_cover_profile.scaleType = ImageView.ScaleType.FIT_XY
+        bg_cover_profile.scaleType = ImageView.ScaleType.CENTER_CROP
     }
 }

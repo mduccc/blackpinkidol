@@ -2,6 +2,7 @@ package com.indieteam.blackbinkidol.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,13 +25,13 @@ class ProfileFragment : Fragment() {
         activity?.let{
             it.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, CoverProfileFragment(), "cover_profile")
                 .commit()
-            val demoData = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
             gird_view.let {
-                it.adapter = GirdviewAdapter(activity!!, demoData)
-                it.y = (activity as MainActivity).sY*43
+                it.adapter = GirdviewAdapter(activity!!, (activity as MainActivity).idol)
+                it.y = (activity as MainActivity).sY*35
                 //it.columnWidth = ((activity as MainActivity).sX*30).toInt()
-                it.verticalSpacing = ((activity as MainActivity).sX*15).toInt()
-                it.layoutParams.height = (((activity as MainActivity).sY*100).toInt() - (activity as MainActivity).sY*65).toInt()
+                //it.verticalSpacing = ((activity as MainActivity).sX*15).toInt()
+                activity!!.bottom_navigation.measure(0,0)
+                it.layoutParams.height = ((((activity as MainActivity).sY*100).toInt() - (activity as MainActivity).sY*35).toInt() - activity!!.bottom_navigation.measuredHeight - Math.round(((context as MainActivity).sY*10/2).toDouble())).toInt()
             }
         }
     }
