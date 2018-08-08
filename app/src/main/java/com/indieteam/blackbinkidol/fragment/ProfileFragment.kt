@@ -1,11 +1,15 @@
 package com.indieteam.blackbinkidol.fragment
 
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.activity.MainActivity
 import com.indieteam.blackbinkidol.adapter.GirdviewAdapter
@@ -27,11 +31,11 @@ class ProfileFragment : Fragment() {
                 .commit()
             gird_view.let {
                 it.adapter = GirdviewAdapter(activity!!, (activity as MainActivity).idol)
-                it.y = (activity as MainActivity).sY*35
+                it.y = (activity as MainActivity).sY*30 + ((activity as MainActivity).sY*5)/2
                 //it.columnWidth = ((activity as MainActivity).sX*30).toInt()
                 //it.verticalSpacing = ((activity as MainActivity).sX*15).toInt()
                 activity!!.bottom_navigation.measure(0,0)
-                it.layoutParams.height = ((((activity as MainActivity).sY*100).toInt() - (activity as MainActivity).sY*35).toInt() - activity!!.bottom_navigation.measuredHeight - Math.round(((context as MainActivity).sY*10/2).toDouble())).toInt()
+                it.layoutParams.height = ((((activity as MainActivity).sY*100).toInt() - (activity as MainActivity).sY*30).toInt() - activity!!.bottom_navigation.measuredHeight - Math.round(((context as MainActivity).sY*10/2).toDouble())).toInt()
             }
         }
     }
