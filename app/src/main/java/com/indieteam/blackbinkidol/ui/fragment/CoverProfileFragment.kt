@@ -1,6 +1,5 @@
-package com.indieteam.blackbinkidol.fragment
+package com.indieteam.blackbinkidol.ui.fragment
 
-import android.animation.ValueAnimator
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.indieteam.blackbinkidol.activity.MainActivity
+import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.R
 import kotlinx.android.synthetic.main.fragment_cover_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 
 class CoverProfileFragment : Fragment() {

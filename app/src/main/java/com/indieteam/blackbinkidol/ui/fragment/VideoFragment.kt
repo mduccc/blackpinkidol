@@ -1,4 +1,4 @@
-package com.indieteam.blackbinkidol.fragment
+package com.indieteam.blackbinkidol.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

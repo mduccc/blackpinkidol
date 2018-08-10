@@ -1,4 +1,4 @@
-package com.indieteam.blackbinkidol.activity
+package com.indieteam.blackbinkidol.ui.activity
 
 import android.graphics.Point
 import android.os.Bundle
@@ -7,17 +7,19 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
-import com.indieteam.blackbinkidol.fragment.AlbumFragment
-import com.indieteam.blackbinkidol.fragment.ProfileFragment
-import com.indieteam.blackbinkidol.fragment.SongFragment
-import com.indieteam.blackbinkidol.fragment.VideoFragment
+import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
+import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
+import com.indieteam.blackbinkidol.ui.fragment.SongFragment
+import com.indieteam.blackbinkidol.ui.fragment.VideoFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
     var sX = 0f
     var sY = 0f
-    lateinit var idol: List<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        idol = listOf(1, 2, 3, 4)
     }
 
     private fun setUI(){

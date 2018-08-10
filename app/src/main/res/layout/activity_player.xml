@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerActivity">
+    tools:context=".ui.activity.PlayerActivity">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/ytb_player_view"
