@@ -2,6 +2,7 @@ package com.indieteam.blackbinkidol.ui.activity
 
 import android.content.Intent
 import android.graphics.Point
+import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -24,6 +25,7 @@ class SplashActivity : AppCompatActivity() {
         textView.text = "BLΛƆKPIИK"
         textView.setTextColor(resources.getColor(R.color.colorWhite))
         textView.textSize = 25f
+        textView.typeface = Typeface.DEFAULT_BOLD
         textView.measure(0,0)
         textView.x = sX*50 - textView.measuredWidth/2
         textView.y = sY*50 - textView.measuredHeight/2 - statusBarHeight
