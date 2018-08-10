@@ -4,17 +4,13 @@ import android.graphics.Point
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
 import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
+import com.indieteam.blackbinkidol.ui.fragment.MvFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackbinkidol.ui.fragment.SongFragment
-import com.indieteam.blackbinkidol.ui.fragment.VideoFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUI(){
         getScreen()
-        val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), VideoFragment())
+        val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), MvFragment())
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
         view_pager.setOffscreenPageLimit(4)
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{

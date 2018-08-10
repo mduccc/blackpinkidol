@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.VideoFragment">
+    tools:context=".ui.fragment.MvFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/mv_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/colorWhite"
+        android:dividerHeight="10dp"
+        android:divider="@color/colorWhite">
+    </ListView>
 
 </FrameLayout>
