@@ -21,7 +21,7 @@ class Profile{
 
     fun request(activity: MainActivity){
         dialog = MaterialDialog.Builder(activity)
-                .content("Dowload Data ...\n")
+                .content("Download Data ...\n")
                 .progress(true, 0)
                 .progressIndeterminateStyle(true)
                 .show()
@@ -44,11 +44,12 @@ class Profile{
                 val memberArr = body.getJSONArray("member")
                 val member = arrayListOf<AvatarData>()
                 for(item in 0 until  memberArr.length()){
+                    val key = memberArr.getJSONObject(item).getString("key")
                     val memberObj = JSONObject(memberArr.getJSONObject(item).getString("info"))
                     val name = memberObj.getString("stage_name")
                     val imageProfile = memberObj.getString("image_profile")
-                    Log.d("member","$name $imageProfile")
-                    member.add(AvatarData(name, imageProfile))
+                    Log.d("member","$key $name $imageProfile")
+                    member.add(AvatarData(key, name, imageProfile))
                 }
 
                 activity.let { it ->

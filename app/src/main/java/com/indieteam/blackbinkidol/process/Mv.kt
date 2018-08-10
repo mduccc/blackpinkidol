@@ -19,7 +19,7 @@ class Mv{
 
     fun request(activity: MainActivity){
         dialog = MaterialDialog.Builder(activity)
-                .content("Dowload Data ...\n")
+                .content("Download Data ...\n")
                 .progress(true, 0)
                 .progressIndeterminateStyle(true)
                 .show()
@@ -42,9 +42,10 @@ class Mv{
                 val mvArr = body.getJSONArray("mv")
                 val mv = arrayListOf<MvData>()
                 for(item in 0 until mvArr.length()){
+                    val key = mvArr.getJSONObject(item).getString("key")
                     val name = mvArr.getJSONObject(item).getString("name")
-                    Log.d("Mv", "$name")
-                    mv.add(MvData(name))
+                    Log.d("Mv", "$key $name")
+                    mv.add(MvData(key, name))
                 }
                 activity.runOnUiThread {
                     activity.mv_list_view.adapter = MvListviewAdapter(activity, mv)

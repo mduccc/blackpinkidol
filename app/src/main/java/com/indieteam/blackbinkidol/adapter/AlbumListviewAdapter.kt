@@ -13,6 +13,7 @@ class AlbumListviewAdapter(val context: Context, val data: ArrayList<AlbumData>)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.album_layout, null)
+        view.album_key.text = data[position].key
         view.album_name.text = data[position].name
         view.album_genre.text = "Genre: "+data[position].genre
         view.album_label.text = "Lable: "+data[position].label

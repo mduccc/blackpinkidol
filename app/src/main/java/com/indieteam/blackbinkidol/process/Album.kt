@@ -19,7 +19,7 @@ class Album{
 
     fun request(activity: MainActivity){
         dialog = MaterialDialog.Builder(activity)
-                .content("Dowload Data ...\n")
+                .content("Download Data ...\n")
                 .progress(true, 0)
                 .progressIndeterminateStyle(true)
                 .show()
@@ -42,12 +42,13 @@ class Album{
                 val albumArr = body.getJSONArray("album")
                 val album = arrayListOf<AlbumData>()
                 for(item in 0 until albumArr.length()){
+                    val key = albumArr.getJSONObject(item).getString("key")
                     val name = albumArr.getJSONObject(item).getString("name")
                     val genre = albumArr.getJSONObject(item).getString("genre")
                     val label = albumArr.getJSONObject(item).getString("label")
                     val year = albumArr.getJSONObject(item).getString("year")
-                    Log.d("album", "$name $genre $label $year")
-                    album.add(AlbumData(name, genre, label, year))
+                    Log.d("album", "$key $name $genre $label $year")
+                    album.add(AlbumData(key, name, genre, label, year))
                 }
                 activity.runOnUiThread {
                     activity.album_list_view.adapter = AlbumListviewAdapter(activity, album)

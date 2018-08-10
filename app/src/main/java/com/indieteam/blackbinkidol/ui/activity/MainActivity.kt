@@ -2,10 +2,11 @@ package com.indieteam.blackbinkidol.ui.activity
 
 import android.graphics.Point
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
+import com.indieteam.blackbinkidol.ui.events.ActivityEvents
+import com.indieteam.blackbinkidol.ui.events.FragmentEvents
 import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
 import com.indieteam.blackbinkidol.ui.fragment.MvFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
@@ -24,9 +25,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setUI()
         init()
+        events()
     }
 
-    private fun init(){
+    private fun init(){}
+
+    private fun events(){
+        ActivityEvents(this).listen()
     }
 
     private fun setUI(){
@@ -34,43 +39,6 @@ class MainActivity : AppCompatActivity() {
         val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), MvFragment())
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
         view_pager.setOffscreenPageLimit(4)
-        view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
-            override fun onPageScrollStateChanged(state: Int) {}
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
-
-            override fun onPageSelected(position: Int) {
-                when(position){
-                    0 -> bottom_navigation.selectedItemId = R.id.profile
-                    1 -> bottom_navigation.selectedItemId = R.id.song
-                    2 -> bottom_navigation.selectedItemId = R.id.album
-                    3 -> bottom_navigation.selectedItemId = R.id.mv
-                    else ->{}
-                }
-            }
-
-        })
-        bottom_navigation.setOnNavigationItemSelectedListener{
-            when(it.itemId){
-                R.id.profile ->{
-                    view_pager.currentItem = 0
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.song ->{
-                    view_pager.currentItem = 1
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.album ->{
-                    view_pager.currentItem = 2
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.mv ->{
-                    view_pager.currentItem = 3
-                    return@setOnNavigationItemSelectedListener true
-                }
-                else -> return@setOnNavigationItemSelectedListener true
-            }
-        }
 
         //disable swipe
 //        view_pager.setOnTouchListener(object: View.OnTouchListener{

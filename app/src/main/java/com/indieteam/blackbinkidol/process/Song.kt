@@ -20,7 +20,7 @@ class Song{
     fun request(activity: MainActivity){
 
         dialog = MaterialDialog.Builder(activity)
-                .content("Dowload Data ...\n")
+                .content("Download Data ...\n")
                 .progress(true, 0)
                 .progressIndeterminateStyle(true)
                 .show()
@@ -43,11 +43,12 @@ class Song{
                 val songArr = body.getJSONArray("song")
                 val song = arrayListOf<SongData>()
                 for(item in 0 until songArr.length()){
+                    val key = songArr.getJSONObject(item).getString("key")
                     val name = songArr.getJSONObject(item).getString("name")
                     val info = "Blackpink | Album: " + songArr.getJSONObject(item).getString("album")
                     val year = songArr.getJSONObject(item).getString("year")
-                    song.add(SongData(name, info, year))
-                    Log.d("song", "$name $info $year")
+                    song.add(SongData(key, name, info, year))
+                    Log.d("song", "$key $name $info $year")
                 }
 
                 activity.runOnUiThread {

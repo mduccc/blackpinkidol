@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.process.Mv
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import com.indieteam.blackbinkidol.ui.events.FragmentEvents
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MvFragment : Fragment() {
@@ -21,5 +22,6 @@ class MvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Mv().request(activity as MainActivity)
+        FragmentEvents(activity as MainActivity).onMvItemsListen()
     }
 }

@@ -13,6 +13,7 @@ class SongListviewAdapter(val context: Context, val data: ArrayList<SongData>): 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.song_layout, null)
+        view.song_key.text = data[position].key
         view.song_name.text = data[position].name
         view.song_group.text = "Singer: "+data[position].info
         view.song_year.text = "Year: "+data[position].year

@@ -26,4 +26,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_alignBottom="@+id/circle_view_avatar" />
+
+    <TextView
+        android:id="@+id/avatar_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 </RelativeLayout>

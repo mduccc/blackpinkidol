@@ -13,6 +13,7 @@ class MvListviewAdapter(val context: Context, val data: ArrayList<MvData>): Base
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.mv_layout, null)
+        view.mv_key.text = data[position].key
         view.mv_name.text = data[position].name
         return view
     }

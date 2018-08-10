@@ -14,6 +14,7 @@ class GirdviewAdapter(val context: Context, val data: ArrayList<AvatarData>): Ba
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layoutAvatar = layoutInflater.inflate(R.layout.avatar_layout, null)
+        layoutAvatar.avatar_key.text = data[position].key
         layoutAvatar.avatar_image.layoutParams.height = 350
         layoutAvatar.avatar_name.text = data[position].name
 
@@ -36,5 +37,4 @@ class GirdviewAdapter(val context: Context, val data: ArrayList<AvatarData>): Ba
     override fun getCount(): Int {
         return data.size
     }
-
 }

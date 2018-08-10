@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.process.Song
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import com.indieteam.blackbinkidol.ui.events.FragmentEvents
 
 class SongFragment : Fragment() {
 
@@ -20,5 +21,6 @@ class SongFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Song().request(activity as MainActivity)
+        FragmentEvents(activity as MainActivity).onSongItemsListen()
     }
 }

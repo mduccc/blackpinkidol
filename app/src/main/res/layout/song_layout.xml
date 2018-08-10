@@ -32,4 +32,10 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/song_name"
         android:text="Year" />
+
+    <TextView
+        android:id="@+id/song_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 </RelativeLayout>
