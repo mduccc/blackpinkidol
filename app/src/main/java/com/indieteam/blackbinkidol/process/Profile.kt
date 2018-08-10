@@ -2,6 +2,8 @@ package com.indieteam.blackbinkidol.process
 
 import android.util.Log
 import android.widget.Toast
+import com.afollestad.materialdialogs.DialogAction
+import com.afollestad.materialdialogs.MaterialDialog
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.GirdviewAdapter
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
@@ -14,8 +16,15 @@ import java.io.IOException
 
 class Profile{
     private var client = OkHttpClient()
+    private lateinit var dialog: MaterialDialog
 
     fun request(activity: MainActivity){
+        dialog = MaterialDialog.Builder(activity)
+                .content("Dowload Data ...\n")
+                .progress(true, 0)
+                .progressIndeterminateStyle(true)
+                .show()
+
         val rq = Request.Builder()
                 .url("http://80.211.52.162:3001/v1/profile?name=blackpink")
                 .build()
@@ -23,11 +32,13 @@ class Profile{
         client.newCall(rq).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
                 activity.runOnUiThread {
+                    dialog.cancel()
                     Toast.makeText(activity, "Error network", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onResponse(call: Call?, response: Response?) {
+                dialog.cancel()
                 val body = JSONObject(response?.body()?.string())
                 val memberArr = body.getJSONArray("member")
                 val member = arrayListOf<AvatarData>()
@@ -50,7 +61,7 @@ class Profile{
                             it.y = activity.sY * 30 + (activity.sY * 5) / 2
                             it.verticalSpacing = ((activity as MainActivity).sX*5).toInt()
                             activity.bottom_navigation.measure(0, 0)
-                            it.layoutParams.height = (((activity.sY * 100).toInt() - activity.sY * 30).toInt() - activity.bottom_navigation.measuredHeight - Math.round(((activity).sY * 10 / 2).toDouble())).toInt()
+                            it.layoutParams.height = (((activity.sY * 100).toInt() - activity.sY * 30).toInt() - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
                             Log.d("setGirdView","Ok")
                         }
                     }

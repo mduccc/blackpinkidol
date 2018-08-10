@@ -6,6 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
+import com.indieteam.blackbinkidol.adapter.SongListviewAdapter
+import com.indieteam.blackbinkidol.process.Song
+import com.indieteam.blackbinkidol.process.SongData
+import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import kotlinx.android.synthetic.main.fragment_song.*
 
 class SongFragment : Fragment() {
 
@@ -13,5 +18,10 @@ class SongFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_song, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Song().request(activity as MainActivity)
     }
 }

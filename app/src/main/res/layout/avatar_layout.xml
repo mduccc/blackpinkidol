@@ -16,7 +16,8 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:scaleType="centerInside"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            android:src="@drawable/singer_load"/>
     </com.github.florent37.shapeofview.shapes.CircleView>
 
     <TextView
