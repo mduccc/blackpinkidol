@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:id="@+id/rl_avatar_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/avatar_image"
-        android:layout_width="match_parent"
+    <com.github.florent37.shapeofview.shapes.CircleView
+        android:id="@+id/circle_view_avatar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerInside"/>
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/avatar_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:scaleType="centerInside"
+            android:contentDescription="TODO" />
+    </com.github.florent37.shapeofview.shapes.CircleView>
+
     <TextView
         android:id="@+id/avatar_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_alignBottom="@+id/avatar_image"/>
+        android:layout_alignBottom="@+id/circle_view_avatar" />
 </RelativeLayout>

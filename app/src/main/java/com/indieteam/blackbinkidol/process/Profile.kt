@@ -23,7 +23,7 @@ class Profile{
         client.newCall(rq).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
                 activity.runOnUiThread {
-                    Toast.makeText(activity, "errr", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Error network", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -45,9 +45,10 @@ class Profile{
                         it.gird_view.let {
                             it.adapter = GirdviewAdapter(activity, member)
                             it.y = activity.sY * 30 + (activity.sY * 5) / 2
-                            //it.verticalSpacing = ((activity as MainActivity).sX*5).toInt()
+                            it.verticalSpacing = ((activity as MainActivity).sX*5).toInt()
                             activity.bottom_navigation.measure(0, 0)
                             it.layoutParams.height = (((activity.sY * 100).toInt() - activity.sY * 30).toInt() - activity.bottom_navigation.measuredHeight - Math.round(((activity).sY * 10 / 2).toDouble())).toInt()
+                            Log.d("setGirdView","Ok")
                         }
                     }
                 }
