@@ -38,9 +38,12 @@ class Profile{
                     Log.d("member","$name $imageProfile")
                     member.add(AvatarData(name, imageProfile))
                 }
+
                 activity.let { it ->
-                    it.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, CoverProfileFragment(), "cover_profile")
-                            .commit()
+                    try {
+                        it.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, CoverProfileFragment(), "cover_profile")
+                                .commit()
+                    }catch (e: Exception){}
                     it.runOnUiThread {
                         it.gird_view.let {
                             it.adapter = GirdviewAdapter(activity, member)

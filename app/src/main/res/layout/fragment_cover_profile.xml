@@ -12,8 +12,9 @@
         android:id="@+id/cover_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:shape_roundRect_bottomLeftRadius="15dp"
-        app:shape_roundRect_bottomRightRadius="15dp">
+        android:elevation="5dp"
+        app:shape_roundRect_bottomLeftRadius="10dp"
+        app:shape_roundRect_bottomRightRadius="10dp">
     <ImageView
             android:id="@+id/image_cover_profile"
             android:layout_width="wrap_content"

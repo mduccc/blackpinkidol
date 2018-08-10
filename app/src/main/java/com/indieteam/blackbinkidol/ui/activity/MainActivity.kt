@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         getScreen()
         val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), VideoFragment())
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
+        view_pager.setOffscreenPageLimit(4)
         view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrollStateChanged(state: Int) {}
 
