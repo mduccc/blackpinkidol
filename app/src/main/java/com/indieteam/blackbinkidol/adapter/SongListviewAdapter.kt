@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.SongData
+import com.indieteam.blackbinkidol.model.SongData
 import kotlinx.android.synthetic.main.song_layout.view.*
 
 class SongListviewAdapter(val context: Context, val data: ArrayList<SongData>): BaseAdapter(){

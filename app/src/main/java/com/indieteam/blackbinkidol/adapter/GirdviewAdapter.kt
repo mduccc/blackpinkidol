@@ -1,19 +1,14 @@
 package com.indieteam.blackbinkidol.adapter
 
 import android.content.Context
-import android.text.Layout
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.R.id.gird_view
-import com.indieteam.blackbinkidol.process.AvatarData
-import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import com.indieteam.blackbinkidol.model.AvatarData
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.avatar_layout.view.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 
 class GirdviewAdapter(val context: Context, val data: ArrayList<AvatarData>): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

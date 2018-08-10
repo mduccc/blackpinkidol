@@ -2,10 +2,11 @@ package com.indieteam.blackbinkidol.process
 
 import android.util.Log
 import android.widget.Toast
-import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.GirdviewAdapter
+import com.indieteam.blackbinkidol.api.Api
+import com.indieteam.blackbinkidol.model.AvatarData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.CoverProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,7 +27,7 @@ class Profile{
                 .show()
 
         val rq = Request.Builder()
-                .url("http://80.211.52.162:3001/v1/profile?name=blackpink")
+                .url(Api().apiProfile)
                 .build()
 
         client.newCall(rq).enqueue(object : Callback {

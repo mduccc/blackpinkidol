@@ -1,3 +1,3 @@
-package com.indieteam.blackbinkidol.process
+package com.indieteam.blackbinkidol.model
 
 class AvatarData(val name: String, val imageProfile: String)

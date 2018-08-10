@@ -1,4 +1,4 @@
-package com.indieteam.blackbinkidol.process
+package com.indieteam.blackbinkidol.model
 
 import java.time.Year
 

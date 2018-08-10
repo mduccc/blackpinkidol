@@ -6,12 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.AlbumData
-import com.indieteam.blackbinkidol.process.MvData
-import com.indieteam.blackbinkidol.process.SongData
-import kotlinx.android.synthetic.main.album_layout.view.*
+import com.indieteam.blackbinkidol.model.MvData
 import kotlinx.android.synthetic.main.mv_layout.view.*
-import kotlinx.android.synthetic.main.song_layout.view.*
 
 class MvListviewAdapter(val context: Context, val data: ArrayList<MvData>): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {

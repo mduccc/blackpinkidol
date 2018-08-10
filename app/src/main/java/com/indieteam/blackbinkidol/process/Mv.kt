@@ -3,11 +3,11 @@ package com.indieteam.blackbinkidol.process
 import android.util.Log
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
-import com.indieteam.blackbinkidol.adapter.AlbumListviewAdapter
 import com.indieteam.blackbinkidol.adapter.MvListviewAdapter
+import com.indieteam.blackbinkidol.api.Api
+import com.indieteam.blackbinkidol.model.MvData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_album.*
 import kotlinx.android.synthetic.main.fragment_mv.*
 import okhttp3.*
 import org.json.JSONObject
@@ -25,7 +25,7 @@ class Mv{
                 .show()
 
         val rq = Request.Builder()
-                .url("http://80.211.52.162:3001/v1/mv?name=blackpink")
+                .url(Api().apiMv)
                 .build()
 
         client.newCall(rq).enqueue(object : Callback {

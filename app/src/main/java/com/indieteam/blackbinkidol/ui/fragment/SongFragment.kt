@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.adapter.SongListviewAdapter
 import com.indieteam.blackbinkidol.process.Song
-import com.indieteam.blackbinkidol.process.SongData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
-import kotlinx.android.synthetic.main.fragment_song.*
 
 class SongFragment : Fragment() {
 
