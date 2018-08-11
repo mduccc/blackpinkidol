@@ -23,11 +23,11 @@ class SongFragment : Fragment() {
         val key = arguments?.getString("key")
         if(key == null){
             Song(activity as MainActivity, this).request(null)
-            FragmentEvents(activity as MainActivity).onSongItemsListen(this)
+
         }else{
             Song(activity as MainActivity, this).request(key)
-            (activity as MainActivity).fragmentEvents.onSongItemsListen(this)
         }
+        (activity as MainActivity).fragmentEvents.onSongItemsListen(this)
     }
 
     fun onBack() {

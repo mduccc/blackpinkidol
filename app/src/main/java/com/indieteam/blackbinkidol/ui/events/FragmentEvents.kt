@@ -19,6 +19,7 @@ class FragmentEvents(val activity: MainActivity){
 
     private val singerFragment = SingerFragment()
     private val playSongFragment = PlaySongFragment()
+    private val playSongFragment2 = PlaySongFragment()
     private val songFragment = SongFragment()
     private lateinit var albumFragment: AlbumFragment
 
@@ -51,8 +52,8 @@ class FragmentEvents(val activity: MainActivity){
                 activity.runOnUiThread {
                     val bundle = Bundle()
                     bundle.putString("key", key)
-                    playSongFragment.arguments = bundle
                     if(rootView == R.id.rl_song_fragment.toString()) {
+                        playSongFragment.arguments = bundle
                         if (fragment.childFragmentManager.findFragmentByTag("play_song_fragment") != null) {
                             fragment.childFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment, "play_song_fragment")
                                     .addToBackStack(null)
@@ -63,12 +64,13 @@ class FragmentEvents(val activity: MainActivity){
                                     .commit()
                         }
                     }else{
-                        if (albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment1") != null) {
-                            albumFragment.childFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment, "play_song_fragment1")
+                        playSongFragment2.arguments = bundle
+                        if (albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2") != null) {
+                            albumFragment.childFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment2, "play_song_fragment2")
                                     .addToBackStack(null)
                                     .commit()
                         } else {
-                            albumFragment.childFragmentManager.beginTransaction().add(rootView.toInt(), playSongFragment, "play_song_fragment1")
+                            albumFragment.childFragmentManager.beginTransaction().add(rootView.toInt(), playSongFragment2, "play_song_fragment2")
                                     .addToBackStack(null)
                                     .commit()
                         }
