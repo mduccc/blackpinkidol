@@ -23,10 +23,17 @@ class SongFragment : Fragment() {
         val key = arguments?.getString("key")
         if(key == null){
             Song(activity as MainActivity, this).request(null)
-        }
-        key?.let{
+            FragmentEvents(activity as MainActivity).onSongItemsListen(this)
+        }else{
             Song(activity as MainActivity, this).request(key)
+            (activity as MainActivity).fragmentEvents.onSongItemsListen(this)
         }
-        FragmentEvents(activity as MainActivity).onSongItemsListen(this)
+    }
+
+    fun onBack() {
+        val count = childFragmentManager.backStackEntryCount
+        if (count > 0) {
+            childFragmentManager.popBackStackImmediate()
+        }
     }
 }

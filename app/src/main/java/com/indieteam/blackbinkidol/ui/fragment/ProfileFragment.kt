@@ -22,6 +22,14 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Profile(activity as MainActivity, this).request()
-        FragmentEvents(activity as MainActivity).onProfileItemsListen(this)
+        (activity as MainActivity).fragmentEvents.onProfileItemsListen(this)
     }
+
+    fun onBack(){
+        val count = childFragmentManager.backStackEntryCount
+        if(count > 0){
+            childFragmentManager.popBackStackImmediate()
+        }
+    }
+
 }

@@ -20,6 +20,7 @@ class FragmentEvents(val activity: MainActivity){
     private val singerFragment = SingerFragment()
     private val playSongFragment = PlaySongFragment()
     private val songFragment = SongFragment()
+    private lateinit var albumFragment: AlbumFragment
 
     fun onProfileItemsListen(fragment: ProfileFragment) {
         fragment.gird_view.setOnItemClickListener { parent, view, position, id ->
@@ -28,13 +29,13 @@ class FragmentEvents(val activity: MainActivity){
                 val bundle = Bundle()
                 bundle.putString("key", key as String)
                 singerFragment.arguments = bundle
-                if(activity.supportFragmentManager.findFragmentByTag("singer_fragment") != null) {
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
-                            .addToBackStack("singer_fragment")
+                if(fragment.getChildFragmentManager().findFragmentByTag("singer_fragment") != null) {
+                    fragment.getChildFragmentManager().beginTransaction().replace(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
+                            .addToBackStack(null)
                             .commit()
                 }else{
-                    activity.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
-                            .addToBackStack("singer_fragment")
+                    fragment.getChildFragmentManager().beginTransaction().add(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
+                            .addToBackStack(null)
                             .commit()
                 }
             }
@@ -44,20 +45,33 @@ class FragmentEvents(val activity: MainActivity){
     fun onSongItemsListen(fragment: SongFragment) {
         fragment.song_list_view.setOnItemClickListener { parent, view, position, id ->
             activity.runOnUiThread {
-                val key = view.song_key.text  as String
+                val key = view.song_key.text as String
                 val rootView = view.song_id_root_view.text as String
+                Log.d("rootView", rootView)
                 activity.runOnUiThread {
                     val bundle = Bundle()
                     bundle.putString("key", key)
                     playSongFragment.arguments = bundle
-                    if(activity.supportFragmentManager.findFragmentByTag("play_song_fragment") != null) {
-                        activity.supportFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment, "play_song_fragment")
-                                .addToBackStack("play_song_fragment")
-                                .commit()
+                    if(rootView == R.id.rl_song_fragment.toString()) {
+                        if (fragment.childFragmentManager.findFragmentByTag("play_song_fragment") != null) {
+                            fragment.childFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment, "play_song_fragment")
+                                    .addToBackStack(null)
+                                    .commit()
+                        } else {
+                            fragment.childFragmentManager.beginTransaction().add(rootView.toInt(), playSongFragment, "play_song_fragment")
+                                    .addToBackStack(null)
+                                    .commit()
+                        }
                     }else{
-                        activity.supportFragmentManager.beginTransaction().add(rootView.toInt(), playSongFragment, "play_song_fragment")
-                                .addToBackStack("play_song_fragment")
-                                .commit()
+                        if (albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment1") != null) {
+                            albumFragment.childFragmentManager.beginTransaction().replace(rootView.toInt(), playSongFragment, "play_song_fragment1")
+                                    .addToBackStack(null)
+                                    .commit()
+                        } else {
+                            albumFragment.childFragmentManager.beginTransaction().add(rootView.toInt(), playSongFragment, "play_song_fragment1")
+                                    .addToBackStack(null)
+                                    .commit()
+                        }
                     }
                 }
             }
@@ -65,19 +79,20 @@ class FragmentEvents(val activity: MainActivity){
     }
 
     fun onAlbumItemsListen(fragment: AlbumFragment){
+        albumFragment = fragment
         fragment.album_list_view.setOnItemClickListener { parent, view, position, id ->
             activity.runOnUiThread {
                 val key = view.album_key.text
                 val bundle = Bundle()
                 bundle.putString("key", key as String)
                 songFragment.arguments = bundle
-                if (activity.supportFragmentManager.findFragmentByTag("song_fragment") != null) {
-                    activity.supportFragmentManager.beginTransaction().replace(R.id.rl_album_fragment, songFragment, "song_fragment")
-                            .addToBackStack("song_fragment")
+                if (fragment.childFragmentManager.findFragmentByTag("song_fragment") != null) {
+                    fragment.childFragmentManager.beginTransaction().replace(R.id.rl_album_fragment, songFragment, "song_fragment")
+                            .addToBackStack(null)
                             .commit()
                 }else{
-                    activity.supportFragmentManager.beginTransaction().add(R.id.rl_album_fragment, songFragment, "song_fragment")
-                            .addToBackStack("song_fragment")
+                    fragment.childFragmentManager.beginTransaction().add(R.id.rl_album_fragment, songFragment, "song_fragment")
+                            .addToBackStack(null)
                             .commit()
                 }
             }

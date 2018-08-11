@@ -23,6 +23,13 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Album(activity as MainActivity, this).request()
-        FragmentEvents(activity as MainActivity).onAlbumItemsListen(this)
+        (activity as MainActivity).fragmentEvents.onAlbumItemsListen(this)
+    }
+
+    fun onBack() {
+        val count = childFragmentManager.backStackEntryCount
+        if (count > 0) {
+            childFragmentManager.popBackStackImmediate()
+        }
     }
 }

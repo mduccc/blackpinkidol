@@ -22,6 +22,13 @@ class MvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Mv(activity as MainActivity, this).request()
-        FragmentEvents(activity as MainActivity).onMvItemsListen(this)
+        (activity as MainActivity).fragmentEvents.onMvItemsListen(this)
+    }
+
+    fun onBack() {
+        val count = childFragmentManager.backStackEntryCount
+        if (count > 0) {
+            childFragmentManager.popBackStackImmediate()
+        }
     }
 }

@@ -21,20 +21,29 @@ class MainActivity : AppCompatActivity() {
     var statusBarHeight = 0
     var navigationBarHeight = 0
 
+    private val profileFragment = ProfileFragment()
+    private val songFragment = SongFragment()
+    private val albumFragment = AlbumFragment()
+    private val mvFragment = MvFragment()
+
     lateinit var profile: JSONObject
     lateinit var song: JSONObject
     lateinit var album: JSONObject
     lateinit var mv: JSONObject
 
+    lateinit var fragmentEvents: FragmentEvents
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setUI()
         init()
+        setUI()
         events()
     }
 
-    private fun init(){}
+    private fun init(){
+        fragmentEvents = FragmentEvents(this)
+    }
 
     private fun events(){
         ActivityEvents(this).listen()
@@ -42,7 +51,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUI(){
         getScreen()
-        val layout = listOf(ProfileFragment(), SongFragment(), AlbumFragment(), MvFragment())
+
+        val layout = listOf(profileFragment, songFragment, albumFragment, mvFragment)
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
         view_pager.setOffscreenPageLimit(4)
 
@@ -66,5 +76,25 @@ class MainActivity : AppCompatActivity() {
         val resourcesId2 = resources.getIdentifier("navigation_bar_height", "dimen", "android")
         statusBarHeight = resources.getDimensionPixelSize(resourcesId)
         navigationBarHeight = resources.getDimensionPixelSize(resourcesId2)
+    }
+
+    override fun onBackPressed() {
+        when(view_pager.currentItem){
+            0 ->{
+                profileFragment.onBack()
+            }
+            1 ->{
+                songFragment.onBack()
+            }
+            2 ->{
+                albumFragment.onBack()
+            }
+            3 ->{
+                mvFragment.onBack()
+            }
+            else ->{
+
+            }
+        }
     }
 }
