@@ -1,6 +1,7 @@
 package com.indieteam.blackbinkidol.process
 
 import android.util.Log
+import android.widget.Toast
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_singer.*

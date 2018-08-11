@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_play_song_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".ui.fragment.PlaySongFragment">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+        android:id="@+id/song_ytb_player_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView>
+
+    <ScrollView
+        android:id="@+id/song_lyrics_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/song_ytb_player_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/song_lyrics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
