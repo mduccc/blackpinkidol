@@ -30,10 +30,11 @@ class SongFragment : Fragment() {
         (activity as MainActivity).fragmentEvents.onSongItemsListen(this)
     }
 
-    fun onBack() {
+    fun onBack(): Int {
         val count = childFragmentManager.backStackEntryCount
         if (count > 0) {
             childFragmentManager.popBackStackImmediate()
         }
+        return count
     }
 }

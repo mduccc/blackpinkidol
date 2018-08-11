@@ -25,11 +25,12 @@ class ProfileFragment : Fragment() {
         (activity as MainActivity).fragmentEvents.onProfileItemsListen(this)
     }
 
-    fun onBack(){
+    fun onBack(): Int{
         val count = childFragmentManager.backStackEntryCount
         if(count > 0){
             childFragmentManager.popBackStackImmediate()
         }
+        return count
     }
 
 }

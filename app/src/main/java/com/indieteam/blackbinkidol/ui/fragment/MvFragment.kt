@@ -25,10 +25,11 @@ class MvFragment : Fragment() {
         (activity as MainActivity).fragmentEvents.onMvItemsListen(this)
     }
 
-    fun onBack() {
+    fun onBack(): Int {
         val count = childFragmentManager.backStackEntryCount
         if (count > 0) {
             childFragmentManager.popBackStackImmediate()
         }
+        return count
     }
 }

@@ -79,6 +79,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        if(profileFragment.childFragmentManager.backStackEntryCount == 0 && songFragment.childFragmentManager.backStackEntryCount == 0
+                && albumFragment.childFragmentManager.backStackEntryCount == 0 && mvFragment.childFragmentManager.backStackEntryCount == 0){
+            super.onBackPressed()
+        }
+        
         when(view_pager.currentItem){
             0 ->{
                 profileFragment.onBack()
@@ -92,9 +97,7 @@ class MainActivity : AppCompatActivity() {
             3 ->{
                 mvFragment.onBack()
             }
-            else ->{
-
-            }
+            else ->{ }
         }
     }
 }
