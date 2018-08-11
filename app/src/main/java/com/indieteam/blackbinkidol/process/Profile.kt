@@ -9,17 +9,18 @@ import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.AvatarData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.CoverProfileFragment
+import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class Profile{
+class Profile(val activity: MainActivity, val fragment: ProfileFragment){
     private var client = OkHttpClient()
     private lateinit var dialog: MaterialDialog
 
-    fun request(activity: MainActivity){
+    fun request(){
         dialog = MaterialDialog.Builder(activity)
                 .content("Download Data ...\n")
                 .progress(true, 0)
@@ -59,13 +60,13 @@ class Profile{
                                 .commit()
                     }catch (e: Exception){}
                     it.runOnUiThread {
-                        it.gird_view.let {
+                        fragment.gird_view.let {
                             it.adapter = GirdviewAdapter(activity, member)
-                            activity.rl_profile_fragment.measure(0,0)
-                            it.y = activity.rl_profile_fragment.measuredHeight.toFloat()
+                            fragment.rl_profile_fragment.measure(0,0)
+                            it.y = fragment.rl_profile_fragment.measuredHeight.toFloat()
                             it.verticalSpacing = (activity.sX*5).toInt()
                             activity.bottom_navigation.measure(0, 0)
-                            it.layoutParams.height = (((activity.sY * 100).toInt() - activity.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)
+                            it.layoutParams.height = (((activity.sY * 100).toInt() - fragment.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)
                             Log.d("setGirdView","Ok")
                         }
                     }

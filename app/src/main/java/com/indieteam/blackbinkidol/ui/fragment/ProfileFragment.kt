@@ -21,7 +21,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Profile().request(activity as MainActivity)
+        Profile(activity as MainActivity, this).request()
         FragmentEvents(activity as MainActivity).onProfileItemsListen()
     }
 }

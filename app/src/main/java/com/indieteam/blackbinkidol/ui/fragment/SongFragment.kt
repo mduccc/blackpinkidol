@@ -20,7 +20,7 @@ class SongFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Song().request(activity as MainActivity)
+        Song(activity as MainActivity, this).request()
         FragmentEvents(activity as MainActivity).onSongItemsListen()
     }
 }

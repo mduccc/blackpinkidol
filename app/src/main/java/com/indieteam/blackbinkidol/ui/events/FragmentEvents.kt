@@ -29,10 +29,14 @@ class FragmentEvents(val activity: MainActivity){
         activity.gird_view.setOnItemClickListener { parent, view, position, id ->
             val key = view.avatar_key.text
             activity.runOnUiThread {
-                if(!singerFragment.isAdded) {
-                    val bundle = Bundle()
-                    bundle.putString("key", key as String)
-                    singerFragment.arguments = bundle
+                val bundle = Bundle()
+                bundle.putString("key", key as String)
+                singerFragment.arguments = bundle
+                if(activity.supportFragmentManager.findFragmentByTag("singer_fragment") != null) {
+                    activity.supportFragmentManager.beginTransaction().replace(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
+                            .addToBackStack("singer_fragment")
+                            .commit()
+                }else{
                     activity.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, singerFragment, "singer_fragment")
                             .addToBackStack("singer_fragment")
                             .commit()
@@ -46,10 +50,14 @@ class FragmentEvents(val activity: MainActivity){
             activity.runOnUiThread {
                 val key = view.song_key.text
                 activity.runOnUiThread {
-                    if(!playSongFragment.isAdded) {
-                        val bundle = Bundle()
-                        bundle.putString("key", key as String)
-                        playSongFragment.arguments = bundle
+                    val bundle = Bundle()
+                    bundle.putString("key", key as String)
+                    playSongFragment.arguments = bundle
+                    if(activity.supportFragmentManager.findFragmentByTag("play_song_fragment") != null) {
+                        activity.supportFragmentManager.beginTransaction().replace(R.id.rl_song_fragment, playSongFragment, "play_song_fragment")
+                                .addToBackStack("play_song_fragment")
+                                .commit()
+                    }else{
                         activity.supportFragmentManager.beginTransaction().add(R.id.rl_song_fragment, playSongFragment, "play_song_fragment")
                                 .addToBackStack("play_song_fragment")
                                 .commit()

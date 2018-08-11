@@ -21,7 +21,7 @@ class MvFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Mv().request(activity as MainActivity)
+        Mv(activity as MainActivity, this).request()
         FragmentEvents(activity as MainActivity).onMvItemsListen()
     }
 }

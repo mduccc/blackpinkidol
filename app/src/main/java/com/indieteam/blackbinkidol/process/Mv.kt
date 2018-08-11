@@ -7,17 +7,18 @@ import com.indieteam.blackbinkidol.adapter.MvListviewAdapter
 import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.MvData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import com.indieteam.blackbinkidol.ui.fragment.MvFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_mv.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class Mv{
+class Mv(val activity: MainActivity, val fragment: MvFragment){
     private var client = OkHttpClient()
     private lateinit var dialog: MaterialDialog
 
-    fun request(activity: MainActivity){
+    fun request(){
         dialog = MaterialDialog.Builder(activity)
                 .content("Download Data ...\n")
                 .progress(true, 0)
@@ -51,7 +52,7 @@ class Mv{
                 activity.runOnUiThread {
                     activity.mv_list_view.adapter = MvListviewAdapter(activity, mv)
                     activity.bottom_navigation.measure(0,0)
-                    activity.mv_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+                    fragment.mv_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
                 }
             }
 
