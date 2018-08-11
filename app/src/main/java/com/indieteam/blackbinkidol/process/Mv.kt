@@ -39,6 +39,7 @@ class Mv{
             override fun onResponse(call: Call?, response: Response?) {
                 dialog.cancel()
                 val body = JSONObject(response?.body()?.string())
+                activity.mv = body
                 val mvArr = body.getJSONArray("mv")
                 val mv = arrayListOf<MvData>()
                 for(item in 0 until mvArr.length()){

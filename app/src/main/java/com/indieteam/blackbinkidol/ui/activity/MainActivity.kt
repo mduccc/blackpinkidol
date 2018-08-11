@@ -12,6 +12,7 @@ import com.indieteam.blackbinkidol.ui.fragment.MvFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackbinkidol.ui.fragment.SongFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
     var sY = 0f
     var statusBarHeight = 0
     var navigationBarHeight = 0
+
+    lateinit var profile: JSONObject
+    lateinit var song: JSONObject
+    lateinit var album: JSONObject
+    lateinit var mv: JSONObject
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

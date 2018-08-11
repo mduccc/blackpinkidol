@@ -16,9 +16,5 @@
         android:gravity="center"
         android:numColumns="3"
         android:scrollbars="vertical"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="0dp"
         />
 </RelativeLayout>

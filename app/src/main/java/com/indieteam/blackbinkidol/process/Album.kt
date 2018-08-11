@@ -39,6 +39,7 @@ class Album{
             override fun onResponse(call: Call?, response: Response?) {
                 dialog.cancel()
                 val body = JSONObject(response?.body()?.string())
+                activity.album = body
                 val albumArr = body.getJSONArray("album")
                 val album = arrayListOf<AlbumData>()
                 for(item in 0 until albumArr.length()){

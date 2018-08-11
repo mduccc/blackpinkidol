@@ -41,6 +41,7 @@ class Profile{
             override fun onResponse(call: Call?, response: Response?) {
                 dialog.cancel()
                 val body = JSONObject(response?.body()?.string())
+                activity.profile = body
                 val memberArr = body.getJSONArray("member")
                 val member = arrayListOf<AvatarData>()
                 for(item in 0 until  memberArr.length()){
@@ -60,10 +61,11 @@ class Profile{
                     it.runOnUiThread {
                         it.gird_view.let {
                             it.adapter = GirdviewAdapter(activity, member)
-                            it.y = activity.sY * 30 + (activity.sY * 5) / 2
-                            it.verticalSpacing = ((activity as MainActivity).sX*5).toInt()
+                            activity.rl_profile_fragment.measure(0,0)
+                            it.y = activity.rl_profile_fragment.measuredHeight.toFloat()
+                            it.verticalSpacing = (activity.sX*5).toInt()
                             activity.bottom_navigation.measure(0, 0)
-                            it.layoutParams.height = (((activity.sY * 100).toInt() - activity.sY * 30).toInt() - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+                            it.layoutParams.height = (((activity.sY * 100).toInt() - activity.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)
                             Log.d("setGirdView","Ok")
                         }
                     }
