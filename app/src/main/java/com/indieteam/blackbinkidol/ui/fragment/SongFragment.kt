@@ -20,7 +20,13 @@ class SongFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Song(activity as MainActivity, this).request()
-        FragmentEvents(activity as MainActivity).onSongItemsListen()
+        val key = arguments?.getString("key")
+        if(key == null){
+            Song(activity as MainActivity, this).request(null)
+        }
+        key?.let{
+            Song(activity as MainActivity, this).request(key)
+        }
+        FragmentEvents(activity as MainActivity).onSongItemsListen(this)
     }
 }

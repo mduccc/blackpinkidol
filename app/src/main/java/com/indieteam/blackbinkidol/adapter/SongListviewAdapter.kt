@@ -15,8 +15,9 @@ class SongListviewAdapter(val context: Context, val data: ArrayList<SongData>): 
         val view = layoutInflater.inflate(R.layout.song_layout, null)
         view.song_key.text = data[position].key
         view.song_name.text = data[position].name
-        view.song_group.text = "Singer: "+data[position].info
-        view.song_year.text = "Year: "+data[position].year
+        view.song_group.text = "Singer: "+ data[position].info
+        view.song_year.text = "Year: "+ data[position].year
+        view.song_id_root_view.text = data[position].rootView
         return view
     }
 

@@ -23,6 +23,6 @@ class AlbumFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Album(activity as MainActivity, this).request()
-        FragmentEvents(activity as MainActivity).onAlbumItemsListen()
+        FragmentEvents(activity as MainActivity).onAlbumItemsListen(this)
     }
 }
