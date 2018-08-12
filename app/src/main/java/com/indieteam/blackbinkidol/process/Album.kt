@@ -8,7 +8,6 @@ import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.AlbumData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
-import com.indieteam.blackbinkidol.ui.fragment.PlaySongFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_album.*
 import okhttp3.*

@@ -1,6 +1,5 @@
 package com.indieteam.blackbinkidol.ui.fragment
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +7,10 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.process.PlaySong
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_play_song.*
 import org.json.JSONObject

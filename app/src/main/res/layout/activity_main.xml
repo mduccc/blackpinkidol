@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@color/colorBlack">
+
    <com.github.florent37.shapeofview.shapes.RoundRectView
        android:id="@+id/song_round_ytb_play"
        android:layout_width="match_parent"
@@ -13,6 +14,7 @@
        app:shape_roundRect_topRightRadius="10dp"
        app:shape_roundRect_topLeftRadius="10dp"
        app:shape_roundRect_bottomRightRadius="10dp">
+
       <RelativeLayout
           android:id="@+id/rl_main_activity"
           android:layout_width="match_parent"

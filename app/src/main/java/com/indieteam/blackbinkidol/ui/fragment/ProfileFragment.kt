@@ -1,15 +1,13 @@
 package com.indieteam.blackbinkidol.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.process.Profile
-import com.indieteam.blackbinkidol.ui.events.FragmentEvents
+import com.indieteam.blackbinkidol.ui.activity.MainActivity
 
 class ProfileFragment : Fragment() {
 

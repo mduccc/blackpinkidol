@@ -3,7 +3,6 @@ package com.indieteam.blackbinkidol.ui.activity
 import android.graphics.Point
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
 import android.view.View
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
@@ -56,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         val layout = listOf(profileFragment, songFragment, albumFragment, mvFragment)
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
-        view_pager.setOffscreenPageLimit(4)
+        view_pager.offscreenPageLimit = 4
 
 //        view_pager.setOnTouchListener { v, event ->
 //            view_pager.currentItem = 0

@@ -1,12 +1,12 @@
 package com.indieteam.blackbinkidol.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.indieteam.blackbinkidol.R
+import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.MvData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.squareup.picasso.Picasso
@@ -22,15 +22,12 @@ class MvGirdviewAdapter(val activity: MainActivity, val data: ArrayList<MvData>)
         val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layoutMv = layoutInflater.inflate(R.layout.mv_layout, null)
         layoutMv.mv_key.text = data[position].key
-        val thumbnailsUrl = "https://img.youtube.com/vi/${data[position].idVideo}/0.jpg"
-        val titleUrl = "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${data[position].idVideo}&format=json"
 
         Picasso.get()
-                .load(thumbnailsUrl)
+                .load(Api().youtubeThumbnails(data[position].idVideo))
                 .into(layoutMv.mv_thumbnail)
-
         val rq = Request.Builder()
-                .url(titleUrl)
+                .url(Api().youtubeTitle(data[position].idVideo))
                 .build()
         client.newCall(rq).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {}
