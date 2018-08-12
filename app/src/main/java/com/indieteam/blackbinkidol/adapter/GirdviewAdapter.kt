@@ -9,13 +9,11 @@ import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.model.AvatarData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.update.UpdateUi
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.avatar_layout.view.*
 
 class GirdviewAdapter(val activity: MainActivity, val data: ArrayList<AvatarData>): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = layoutInflater.inflate(R.layout.avatar_layout, null)
+        val view = layoutInflater.inflate(R.layout.layout_avatar, null)
 //        view.avatar_key.text = data[position].key
 //        view.avatar_image.layoutParams.height = 350
 //        view.avatar_name.text = data[position].name

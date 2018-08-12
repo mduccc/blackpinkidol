@@ -1,11 +1,8 @@
 package com.indieteam.blackbinkidol.process
 
-import android.util.Log
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.SingerFragment
 import com.indieteam.blackbinkidol.ui.update.UpdateUi
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_singer.*
 import org.json.JSONObject
 
 class Singer(val activity: MainActivity, val fragment: SingerFragment){

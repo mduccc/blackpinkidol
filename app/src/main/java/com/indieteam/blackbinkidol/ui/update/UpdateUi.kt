@@ -16,22 +16,22 @@ import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.album_layout.view.*
-import kotlinx.android.synthetic.main.avatar_layout.view.*
+import kotlinx.android.synthetic.main.layout_album.view.*
+import kotlinx.android.synthetic.main.layout_avatar.view.*
 import kotlinx.android.synthetic.main.fragment_album.*
 import kotlinx.android.synthetic.main.fragment_mv.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_singer.*
 import kotlinx.android.synthetic.main.fragment_song.*
-import kotlinx.android.synthetic.main.mv_layout.view.*
-import kotlinx.android.synthetic.main.song_layout.view.*
+import kotlinx.android.synthetic.main.layout_mv.view.*
+import kotlinx.android.synthetic.main.layout_song.view.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
 class UpdateUi{
 
-    fun albumLayout(view: View, data: AlbumData){
+    fun layoutAlbum(view: View, data: AlbumData){
         view.album_key.text = data.key
         view.album_name.text = data.name
         view.album_genre.text = "Genre: "+ data.genre

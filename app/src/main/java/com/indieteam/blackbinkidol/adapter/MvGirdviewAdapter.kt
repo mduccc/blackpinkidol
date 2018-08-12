@@ -11,7 +11,7 @@ import com.indieteam.blackbinkidol.model.MvData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.update.UpdateUi
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.mv_layout.view.*
+import kotlinx.android.synthetic.main.layout_mv.view.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -21,7 +21,7 @@ class MvGirdviewAdapter(val activity: MainActivity, val data: ArrayList<MvData>)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = layoutInflater.inflate(R.layout.mv_layout, null)
+        val view = layoutInflater.inflate(R.layout.layout_mv, null)
         UpdateUi().layoutMv(activity, client, view, data[position])
         return view
     }

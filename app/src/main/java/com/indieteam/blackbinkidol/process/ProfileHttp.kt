@@ -3,16 +3,11 @@ package com.indieteam.blackbinkidol.process
 import android.util.Log
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
-import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.adapter.GirdviewAdapter
 import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.AvatarData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
-import com.indieteam.blackbinkidol.ui.fragment.CoverProfileFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackbinkidol.ui.update.UpdateUi
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException

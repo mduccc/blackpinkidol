@@ -10,7 +10,6 @@ import com.indieteam.blackbinkidol.model.SongData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.SongFragment
 import com.indieteam.blackbinkidol.ui.update.UpdateUi
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_song.*
 import okhttp3.*
 import org.json.JSONObject

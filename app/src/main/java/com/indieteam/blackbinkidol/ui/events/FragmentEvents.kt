@@ -6,14 +6,14 @@ import android.widget.Toast
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.*
-import kotlinx.android.synthetic.main.album_layout.view.*
-import kotlinx.android.synthetic.main.avatar_layout.view.*
+import kotlinx.android.synthetic.main.layout_album.view.*
+import kotlinx.android.synthetic.main.layout_avatar.view.*
 import kotlinx.android.synthetic.main.fragment_album.*
 import kotlinx.android.synthetic.main.fragment_mv.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_song.*
-import kotlinx.android.synthetic.main.mv_layout.view.*
-import kotlinx.android.synthetic.main.song_layout.view.*
+import kotlinx.android.synthetic.main.layout_mv.view.*
+import kotlinx.android.synthetic.main.layout_song.view.*
 
 class FragmentEvents(val activity: MainActivity){
 
