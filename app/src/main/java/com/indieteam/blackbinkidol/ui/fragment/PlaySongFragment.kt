@@ -2,6 +2,7 @@ package com.indieteam.blackbinkidol.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -54,18 +55,45 @@ class PlaySongFragment : Fragment() {
         })
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         try {
+            Log.d("status_play", "pause")
             player.ytbPlayerView.pause()
-        }catch (e: Exception){}
+        }catch (e: Exception){
+            Log.d("status_play", "cannot pause")
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        try {
-            player.ytbPlayerView.play()
-        }catch (e: Exception){}
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        try {
+//            Log.d("status_play", "stop")
+//            player.ytbPlayerView.pause()
+//            song_ytb_player_view.release()
+//        }catch (e: Exception){
+//            Log.d("status_play", "cannot stop")
+//        }
+//    }
+
+//    override fun onResume() {
+//        super.onResume()
+//        try {
+//            Log.d("status_play", "play")
+//            player.ytbPlayerView.play()
+//        }catch (e: Exception){
+//            Log.d("status_play", "cannot play")
+//        }
+//    }
+
+//    override  fun onDestroy() {
+//        try {
+//            Log.d("status_play", "destroy")
+//            song_ytb_player_view.release()
+//        }catch (e: Exception){
+//            Log.d("status_play", "cannot destroy")
+//        }
+//        super.onDestroy()
+//    }
 
 }

@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
     var statusBarHeight = 0
     var navigationBarHeight = 0
 
-    private val profileFragment = ProfileFragment()
-    private val songFragment = SongFragment()
-    private val albumFragment = AlbumFragment()
-    private val mvFragment = MvFragment()
+    val profileFragment = ProfileFragment()
+    val songFragment = SongFragment()
+    val albumFragment = AlbumFragment()
+    val mvFragment = MvFragment()
 
     lateinit var profile: JSONObject
     lateinit var song: JSONObject
