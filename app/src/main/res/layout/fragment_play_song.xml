@@ -12,7 +12,9 @@
         android:id="@+id/song_round_ytb_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="5dp">
+        android:elevation="5dp"
+        app:shape_roundRect_bottomLeftRadius="10dp"
+        app:shape_roundRect_bottomRightRadius="10dp">
         <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
             android:id="@+id/song_ytb_player_view"
             android:layout_width="match_parent"

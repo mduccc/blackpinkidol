@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.github.florent37.shapeofview.shapes.RoundRectView
         android:id="@+id/round_ytb_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="3dp"
+        android:elevation="5dp"
         app:shape_roundRect_bottomLeftRadius="10dp"
         app:shape_roundRect_bottomRightRadius="10dp"
         app:shape_roundRect_topLeftRadius="10dp"
