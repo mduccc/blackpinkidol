@@ -12,7 +12,7 @@
        app:shape_roundRect_bottomLeftRadius="10dp"
        app:shape_roundRect_topRightRadius="10dp"
        app:shape_roundRect_topLeftRadius="10dp"
-       app:shape_roundRect_bottomRightRadius="5dp">
+       app:shape_roundRect_bottomRightRadius="10dp">
       <RelativeLayout
           android:id="@+id/rl_main_activity"
           android:layout_width="match_parent"
