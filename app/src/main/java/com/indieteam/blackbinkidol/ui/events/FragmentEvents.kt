@@ -102,7 +102,7 @@ class FragmentEvents(val activity: MainActivity){
     }
 
     fun onMvItemsListen(fragment: MvFragment){
-        activity.mv_list_view.setOnItemClickListener { parent, view, position, id ->
+        activity.mv_gird_view.setOnItemClickListener { parent, view, position, id ->
             activity.runOnUiThread {
                 Toast.makeText(activity, view.mv_key.text, Toast.LENGTH_SHORT).show()
             }

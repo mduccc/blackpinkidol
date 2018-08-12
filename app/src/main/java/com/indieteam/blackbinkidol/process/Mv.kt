@@ -3,7 +3,7 @@ package com.indieteam.blackbinkidol.process
 import android.util.Log
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
-import com.indieteam.blackbinkidol.adapter.MvListviewAdapter
+import com.indieteam.blackbinkidol.adapter.MvGirdviewAdapter
 import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.MvData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
@@ -45,14 +45,13 @@ class Mv(val activity: MainActivity, val fragment: MvFragment){
                 val mv = arrayListOf<MvData>()
                 for(item in 0 until mvArr.length()){
                     val key = mvArr.getJSONObject(item).getString("key")
-                    val name = mvArr.getJSONObject(item).getString("name")
-                    Log.d("Mv", "$key $name")
-                    mv.add(MvData(key, name))
+                    val idVideo = mvArr.getJSONObject(item).getString("youtube")
+                    mv.add(MvData(idVideo, key))
                 }
                 activity.runOnUiThread {
-                    activity.mv_list_view.adapter = MvListviewAdapter(activity, mv)
+                    fragment.mv_gird_view.adapter = MvGirdviewAdapter(activity, mv)
                     activity.bottom_navigation.measure(0,0)
-                    fragment.mv_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+                    fragment.mv_gird_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
                 }
             }
 

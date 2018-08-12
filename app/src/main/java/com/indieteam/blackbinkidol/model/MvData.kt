@@ -1,3 +1,3 @@
 package com.indieteam.blackbinkidol.model
 
-class MvData(val key: String, val name: String)
+class MvData(val idVideo: String, val key: String)

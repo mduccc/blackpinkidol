@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MvFragment">
 
-    <ListView
-        android:id="@+id/mv_list_view"
+    <GridView
+        android:id="@+id/mv_gird_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorWhite"
-        android:dividerHeight="10dp"
-        android:divider="@color/colorWhite">
-    </ListView>
+        android:numColumns="auto_fit"
+        android:verticalSpacing="30sp"
+        android:horizontalSpacing="15sp">
+
+    </GridView>
 
 </FrameLayout>

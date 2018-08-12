@@ -3,6 +3,8 @@ package com.indieteam.blackbinkidol.ui.activity
 import android.graphics.Point
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MotionEvent
+import android.view.View
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
 import com.indieteam.blackbinkidol.ui.events.ActivityEvents
@@ -56,12 +58,10 @@ class MainActivity : AppCompatActivity() {
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
         view_pager.setOffscreenPageLimit(4)
 
-        //disable swipe
-//        view_pager.setOnTouchListener(object: View.OnTouchListener{
-//            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-//                return true
-//            }
-//        })
+//        view_pager.setOnTouchListener { v, event ->
+//            view_pager.currentItem = 0
+//            true
+//        }
     }
 
     private fun getScreen(){
@@ -79,11 +79,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        this.bottom_navigation.visibility = View.VISIBLE
         if(profileFragment.childFragmentManager.backStackEntryCount == 0 && songFragment.childFragmentManager.backStackEntryCount == 0
                 && albumFragment.childFragmentManager.backStackEntryCount == 0 && mvFragment.childFragmentManager.backStackEntryCount == 0){
             super.onBackPressed()
         }
-        
+
         when(view_pager.currentItem){
             0 ->{
                 profileFragment.onBack()

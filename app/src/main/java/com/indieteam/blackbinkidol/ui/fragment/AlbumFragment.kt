@@ -10,6 +10,7 @@ import com.indieteam.blackbinkidol.process.Album
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.events.FragmentEvents
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_play_song.*
 
 class AlbumFragment : Fragment() {
 

@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.model.AlbumData
+import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.album_layout.view.*
 
-class AlbumListviewAdapter(val context: Context, val data: ArrayList<AlbumData>): BaseAdapter(){
+class AlbumListviewAdapter(val activity: MainActivity, val data: ArrayList<AlbumData>): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.album_layout, null)
         view.album_key.text = data[position].key
         view.album_name.text = data[position].name

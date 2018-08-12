@@ -3,17 +3,22 @@ package com.indieteam.blackbinkidol.process
 import android.util.Log
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.PlaySongFragment
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_play_song.*
 
 class PlaySong(val activity: MainActivity, val fragment: PlaySongFragment){
+
+    lateinit var ytbPlayerView: YouTubePlayer
+
     fun play(idVideo: String){
         fragment.song_ytb_player_view.initialize({
             it.addListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady() {
                     super.onReady()
                     it.loadVideo(idVideo, 0F)
+                    ytbPlayerView = it
                 }
             })
         },true)
