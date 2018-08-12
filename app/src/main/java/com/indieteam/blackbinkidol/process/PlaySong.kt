@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_play_song.*
 
 class PlaySong(val activity: MainActivity, val fragment: PlaySongFragment){
 
-    lateinit var ytbPlayerView: YouTubePlayer
+    var ytbPlayerView: YouTubePlayer? = null
 
     fun play(idVideo: String){
         fragment.song_ytb_player_view.initialize({

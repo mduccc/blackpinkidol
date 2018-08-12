@@ -5,7 +5,6 @@ import android.util.Log
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_play_song.*
 
 class ActivityEvents(val activity: MainActivity){
 
@@ -18,7 +17,27 @@ class ActivityEvents(val activity: MainActivity){
             override fun onPageSelected(position: Int) {
                 activity.runOnUiThread {
                     when (position) {
-                        0 -> activity.bottom_navigation.selectedItemId = R.id.profile
+                        0 -> {
+                            activity.bottom_navigation.selectedItemId = R.id.profile
+                            if (activity.songFragment.childFragmentManager.findFragmentByTag("play_song_fragment") != null) {
+                                Log.d("play_song_fragment", "init")
+                                activity.songFragment.childFragmentManager.findFragmentByTag("play_song_fragment").onPause()
+                            } else {
+                                Log.d("play_song_fragment", "null")
+                            }
+                            if (activity.albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2") != null) {
+                                Log.d("play_song_fragment2", "init")
+                                activity.albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2").onPause()
+                            } else {
+                                Log.d("play_song_fragment2", "null")
+                            }
+                            if (activity.mvFragment.childFragmentManager.findFragmentByTag("play_song_fragment3") != null) {
+                                Log.d("play_song_fragment3", "init")
+                                activity.mvFragment.childFragmentManager.findFragmentByTag("play_song_fragment3").onPause()
+                            } else {
+                                Log.d("play_song_fragment3", "null")
+                            }
+                        }
                         1 -> {
                             activity.bottom_navigation.selectedItemId = R.id.song
                             if (activity.albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2") != null) {

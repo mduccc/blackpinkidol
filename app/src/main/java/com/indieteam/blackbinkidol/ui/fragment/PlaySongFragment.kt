@@ -59,41 +59,21 @@ class PlaySongFragment : Fragment() {
         super.onPause()
         try {
             Log.d("status_play", "pause")
-            player.ytbPlayerView.pause()
+            player.ytbPlayerView?.pause()
         }catch (e: Exception){
             Log.d("status_play", "cannot pause")
         }
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        try {
-//            Log.d("status_play", "stop")
-//            player.ytbPlayerView.pause()
-//            song_ytb_player_view.release()
-//        }catch (e: Exception){
-//            Log.d("status_play", "cannot stop")
-//        }
-//    }
-
-//    override fun onResume() {
-//        super.onResume()
-//        try {
-//            Log.d("status_play", "play")
-//            player.ytbPlayerView.play()
-//        }catch (e: Exception){
-//            Log.d("status_play", "cannot play")
-//        }
-//    }
-
-//    override  fun onDestroy() {
-//        try {
-//            Log.d("status_play", "destroy")
-//            song_ytb_player_view.release()
-//        }catch (e: Exception){
-//            Log.d("status_play", "cannot destroy")
-//        }
-//        super.onDestroy()
-//    }
+    override fun onStop() {
+        super.onStop()
+        try {
+            Log.d("status_play", "stop")
+            player.ytbPlayerView = null
+            song_ytb_player_view.release()
+        }catch (e: Exception){
+            Log.d("status_play", "cannot stop")
+        }
+    }
 
 }
