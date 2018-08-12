@@ -9,13 +9,14 @@ import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.SongData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.SongFragment
+import com.indieteam.blackbinkidol.ui.update.UpdateUi
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_song.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class Song(val activity: MainActivity, val fragment: SongFragment){
+class SongHttp(val activity: MainActivity, val fragment: SongFragment){
     private var client = OkHttpClient()
     private lateinit var dialog: MaterialDialog
 
@@ -91,11 +92,12 @@ class Song(val activity: MainActivity, val fragment: SongFragment){
                     Log.d("song", "$key $name $info $year")
                 }
 
-                activity.runOnUiThread {
-                    fragment.song_list_view.adapter = SongListviewAdapter(activity, song)
-                    activity.bottom_navigation.measure(0,0)
-                    fragment.song_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
-                }
+//                activity.runOnUiThread {
+//                    fragment.song_list_view.adapter = SongListviewAdapter(activity, song)
+//                    activity.bottom_navigation.measure(0,0)
+//                    fragment.song_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+//                }
+            UpdateUi().adapterForSongListView(activity, fragment, song)
             }
 
         })

@@ -10,13 +10,14 @@ import com.indieteam.blackbinkidol.model.AvatarData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.CoverProfileFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
+import com.indieteam.blackbinkidol.ui.update.UpdateUi
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class Profile(val activity: MainActivity, val fragment: ProfileFragment){
+class ProfileHttp(val activity: MainActivity, val fragment: ProfileFragment){
     private var client = OkHttpClient()
     private lateinit var dialog: MaterialDialog
 
@@ -54,23 +55,24 @@ class Profile(val activity: MainActivity, val fragment: ProfileFragment){
                     member.add(AvatarData(key, name, imageProfile))
                 }
 
-                activity.let { it ->
-                    try {
-                        it.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, CoverProfileFragment(), "cover_profile")
-                                .commit()
-                    }catch (e: Exception){}
-                    it.runOnUiThread {
-                        fragment.gird_view.let {
-                            it.adapter = GirdviewAdapter(activity, member)
-                            fragment.rl_profile_fragment.measure(0,0)
-                            it.y = fragment.rl_profile_fragment.measuredHeight.toFloat()
-                            it.verticalSpacing = (activity.sX*5).toInt()
-                            activity.bottom_navigation.measure(0, 0)
-                            it.layoutParams.height = (((activity.sY * 100).toInt() - fragment.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)
-                            Log.d("setGirdView","Ok")
-                        }
-                    }
-                }
+//                activity.let { it ->
+//                    try {
+//                        it.supportFragmentManager.beginTransaction().add(R.id.rl_profile_fragment, CoverProfileFragment(), "cover_profile")
+//                                .commit()
+//                    }catch (e: Exception){}
+//                    it.runOnUiThread {
+//                        fragment.gird_view.let {
+//                            it.adapter = GirdviewAdapter(activity, member)
+//                            fragment.rl_profile_fragment.measure(0,0)
+//                            it.y = fragment.rl_profile_fragment.measuredHeight.toFloat()
+//                            it.verticalSpacing = (activity.sX*5).toInt()
+//                            activity.bottom_navigation.measure(0, 0)
+//                            it.layoutParams.height = (((activity.sY * 100).toInt() - fragment.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)
+//                            Log.d("setGirdView","Ok")
+//                        }
+//                    }
+//                }
+                UpdateUi().adapterForProfileGirdview(activity, fragment, member)
             }
         })
     }

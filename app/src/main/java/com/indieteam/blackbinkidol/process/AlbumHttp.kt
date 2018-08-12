@@ -8,13 +8,14 @@ import com.indieteam.blackbinkidol.api.Api
 import com.indieteam.blackbinkidol.model.AlbumData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
+import com.indieteam.blackbinkidol.ui.update.UpdateUi
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_album.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class Album(val activity: MainActivity, val fragment: AlbumFragment){
+class AlbumHttp(val activity: MainActivity, val fragment: AlbumFragment){
     private var client = OkHttpClient()
     private lateinit var dialog: MaterialDialog
 
@@ -52,11 +53,12 @@ class Album(val activity: MainActivity, val fragment: AlbumFragment){
                     Log.d("album", "$key $name $genre $label $year")
                     album.add(AlbumData(key, name, genre, label, year))
                 }
-                activity.runOnUiThread {
-                    activity.album_list_view.adapter = AlbumListviewAdapter(activity, album)
-                    activity.bottom_navigation.measure(0,0)
-                    fragment.album_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
-                }
+//                activity.runOnUiThread {
+//                    activity.album_list_view.adapter = AlbumListviewAdapter(activity, album)
+//                    activity.bottom_navigation.measure(0,0)
+//                    fragment.album_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+//                }
+                UpdateUi().adapterForAlbumListview(activity, fragment, album)
             }
 
         })

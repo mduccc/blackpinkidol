@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.Mv
+import com.indieteam.blackbinkidol.process.MvHttp
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 
 class MvFragment : Fragment() {
@@ -19,7 +19,7 @@ class MvFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Mv(activity as MainActivity, this).request()
+        MvHttp(activity as MainActivity, this).request()
         (activity as MainActivity).fragmentEvents.onMvItemsListen(this)
     }
 

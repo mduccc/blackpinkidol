@@ -8,17 +8,14 @@ import android.widget.BaseAdapter
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.model.SongData
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
+import com.indieteam.blackbinkidol.ui.update.UpdateUi
 import kotlinx.android.synthetic.main.song_layout.view.*
 
 class SongListviewAdapter(val activity: MainActivity, val data: ArrayList<SongData>): BaseAdapter(){
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.song_layout, null)
-        view.song_key.text = data[position].key
-        view.song_name.text = data[position].name
-        view.song_group.text = "Singer: "+ data[position].info
-        view.song_year.text = "Year: "+ data[position].year
-        view.song_id_root_view.text = data[position].rootView
+        UpdateUi().layoutSong(view, data[position])
         return view
     }
 

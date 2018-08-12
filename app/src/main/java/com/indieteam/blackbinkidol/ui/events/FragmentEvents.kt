@@ -113,8 +113,10 @@ class FragmentEvents(val activity: MainActivity){
             activity.runOnUiThread {
                 activity.runOnUiThread {
                     val key = view.mv_key.text
+                    val videoId = view.mv_videoId.text
                     val bundle = Bundle()
                     bundle.putString("key", key as String)
+                    bundle.putString("videoId", videoId as String)
                     playSongFragment3.arguments = bundle
                     if (fragment.childFragmentManager.findFragmentByTag("play_song_fragment3") != null) {
                         fragment.childFragmentManager.beginTransaction().replace(R.id.rl_mv_fragment, playSongFragment3, "play_song_fragment3")

@@ -29,18 +29,24 @@ class PlaySongFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val key = arguments?.getString("key")
+        var videoId = arguments?.getString("videoId")
         activity?.let{
             it as MainActivity
-            val body = it.song
-            val songArr = body.getJSONArray("song")
-            for(item in 0 until songArr.length()){
-                if(songArr.getJSONObject(item).getString("key") == key){
-                    val idVideo = songArr.getJSONObject(item).getString("youtube")
-                    val lyrics = JSONObject(songArr.getJSONObject(item).getString("lyrics")).getString("romanization")
-                    player = PlaySong(it, this)
-                    player.play(idVideo)
-                    player.lyrics(lyrics)
+            if(key != "null") {
+                val body = it.song
+                val songArr = body.getJSONArray("song")
+                for (item in 0 until songArr.length()) {
+                    if (key != "null" && songArr.getJSONObject(item).getString("key") == key) {
+                        videoId = songArr.getJSONObject(item).getString("youtube")
+                        val lyrics = JSONObject(songArr.getJSONObject(item).getString("lyrics")).getString("romanization")
+                        player = PlaySong(it, this)
+                        player.play(videoId!!)
+                        player.lyrics(lyrics)
+                    }
                 }
+            }else{
+                player = PlaySong(it, this)
+                player.play(videoId!!)
             }
         }
         song_ytb_player_view.addFullScreenListener(object : YouTubePlayerFullScreenListener{
