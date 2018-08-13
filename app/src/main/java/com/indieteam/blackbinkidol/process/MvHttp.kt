@@ -55,11 +55,11 @@ class MvHttp(val activity: MainActivity, val fragment: MvFragment){
                     val idVideo = mvArr.getJSONObject(item).getString("youtube")
                     mv.add(MvData(idVideo, key))
                 }
-                activity.runOnUiThread {
-                    fragment.mv_gird_view.adapter = MvGirdviewAdapter(activity, mv)
-                    activity.bottom_navigation.measure(0,0)
-                    fragment.mv_gird_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
-                }
+//                activity.runOnUiThread {
+//                    fragment.mv_gird_view.adapter = MvGirdviewAdapter(activity, mv)
+//                    activity.bottom_navigation.measure(0,0)
+//                    fragment.mv_gird_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
+//                }
                 UpdateUi().adapterForMvGirdview(activity, fragment, mv)
 
             }
