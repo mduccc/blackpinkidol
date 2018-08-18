@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.ProfileHttp
+import com.indieteam.blackbinkidol.process.Profile
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 
 class ProfileFragment : Fragment() {
@@ -19,7 +19,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ProfileHttp(activity as MainActivity, this).request()
+        Profile(activity as MainActivity, this).get()
         (activity as MainActivity).fragmentEvents.onProfileItemsListen(this)
     }
 

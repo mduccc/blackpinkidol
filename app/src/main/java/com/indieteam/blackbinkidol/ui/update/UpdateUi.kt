@@ -107,8 +107,7 @@ class UpdateUi{
             it.runOnUiThread {
                 fragment.gird_view.let {
                     it.adapter = GirdviewAdapter(activity, member)
-                    fragment.rl_profile_fragment.measure(0,0)
-                    it.y = fragment.rl_profile_fragment.measuredHeight.toFloat()
+                    it.y =  activity.sY*30 + (activity.sY*5)/2
                     it.verticalSpacing = (activity.sX*5).toInt()
                     activity.bottom_navigation.measure(0, 0)
                     it.layoutParams.height = (((activity.sY * 100).toInt() - fragment.rl_profile_fragment.measuredHeight) - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight)

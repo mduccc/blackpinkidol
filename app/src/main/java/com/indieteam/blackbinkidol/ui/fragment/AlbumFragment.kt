@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.AlbumHttp
+import com.indieteam.blackbinkidol.process.Album
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 
 class AlbumFragment : Fragment() {
@@ -20,7 +20,7 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AlbumHttp(activity as MainActivity, this).request()
+        Album(activity as MainActivity, this).get()
         (activity as MainActivity).fragmentEvents.onAlbumItemsListen(this)
     }
 

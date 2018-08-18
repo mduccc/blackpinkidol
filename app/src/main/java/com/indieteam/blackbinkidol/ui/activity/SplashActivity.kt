@@ -1,13 +1,14 @@
 package com.indieteam.blackbinkidol.ui.activity
 
-import android.content.Intent
+import android.graphics.Color
 import android.graphics.Point
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.indieteam.blackbinkidol.R
+import com.indieteam.blackbinkidol.process.GetAllDataHttp
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
@@ -29,13 +30,18 @@ class SplashActivity : AppCompatActivity() {
         textView.measure(0,0)
         textView.x = sX*50 - textView.measuredWidth/2
         textView.y = sY*50 - textView.measuredHeight/2 - statusBarHeight
-        rl_splash_activity.addView(textView)
 
-        val intent = Intent(this, MainActivity::class.java)
-        Handler().postDelayed({
-            startActivity(intent)
-            finish()
-        }, 500)
+        val progressBar = ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal)
+        progressBar.isIndeterminate = true
+        progressBar.background = resources.getDrawable(R.color.colorBlack)
+        progressBar.indeterminateDrawable.setColorFilter(Color.WHITE, android.graphics.PorterDuff.Mode.SRC_ATOP)
+        progressBar.measure(0,0)
+        progressBar.x = sX*50 - progressBar.measuredWidth/2
+        progressBar.y = textView.y + textView.measuredHeight + sY*5 - progressBar.measuredHeight/2 - statusBarHeight
+        rl_splash_activity.addView(textView)
+        rl_splash_activity.addView(progressBar)
+
+        GetAllDataHttp(this).get()
     }
 
     private fun getScreen(){

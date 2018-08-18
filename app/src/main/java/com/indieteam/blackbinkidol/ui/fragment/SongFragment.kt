@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.indieteam.blackbinkidol.R
-import com.indieteam.blackbinkidol.process.SongHttp
+import com.indieteam.blackbinkidol.process.Song
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
 
 class SongFragment : Fragment() {
@@ -21,10 +21,10 @@ class SongFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val key = arguments?.getString("key")
         if(key == null){
-            SongHttp(activity as MainActivity, this).request(null)
+            Song(activity as MainActivity, this).get(null)
 
         }else{
-            SongHttp(activity as MainActivity, this).request(key)
+            Song(activity as MainActivity, this).get(key)
         }
         (activity as MainActivity).fragmentEvents.onSongItemsListen(this)
     }

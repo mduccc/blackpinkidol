@@ -1,5 +1,6 @@
 package com.indieteam.blackbinkidol.ui.fragment
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.process.PlaySong
 import com.indieteam.blackbinkidol.ui.activity.MainActivity
@@ -52,10 +54,14 @@ class PlaySongFragment : Fragment() {
         song_ytb_player_view.addFullScreenListener(object : YouTubePlayerFullScreenListener{
             override fun onYouTubePlayerEnterFullScreen() {
                 (activity as MainActivity).bottom_navigation.visibility = GONE
+                Toast.makeText(activity, "FullScreen", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
             }
 
             override fun onYouTubePlayerExitFullScreen() {
                 (activity as MainActivity).bottom_navigation.visibility = VISIBLE
+                Toast.makeText(activity, "Exit FullScreen", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
             }
 
         })

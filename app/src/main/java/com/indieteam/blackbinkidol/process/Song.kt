@@ -15,11 +15,9 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class SongHttp(val activity: MainActivity, val fragment: SongFragment){
-    private var client = OkHttpClient()
-    private lateinit var dialog: MaterialDialog
+class Song(val activity: MainActivity, val fragment: SongFragment){
 
-    fun request(keyAlbum: String?){
+    fun get(keyAlbum: String?){
         if(keyAlbum == null){
             getAll()
         }else{
@@ -33,12 +31,15 @@ class SongHttp(val activity: MainActivity, val fragment: SongFragment){
         val songJson = activity.song
         val albumArr = albumJson.getJSONArray("album")
         val result = arrayListOf<SongData>()
+        // find to album
         for(item in 0 until albumArr.length()){
             if(albumArr.getJSONObject(item).getString("key") == keyAlbum){
                 val songArr = albumArr.getJSONObject(item).getJSONArray("song")
+                // find all song in album
                 for(itemChil in 0 until songArr.length()){
                     val keySong = songArr.getJSONObject(itemChil).get("key")
                     val songNewArr = songJson.getJSONArray("song")
+                    //find info song
                     for(itemChil2 in 0 until songNewArr.length()){
                         if(songNewArr.getJSONObject(itemChil2).getString("key") == keySong){
                             val key = songNewArr.getJSONObject(itemChil2).getString("key")
@@ -58,47 +59,16 @@ class SongHttp(val activity: MainActivity, val fragment: SongFragment){
     }
 
     private fun getAll(){
-        dialog = MaterialDialog.Builder(activity)
-                .content("Download Data ...\n")
-                .progress(true, 0)
-                .progressIndeterminateStyle(true)
-                .show()
-
-        val rq = Request.Builder()
-                .url(Api().apiSong)
-                .build()
-
-        client.newCall(rq).enqueue(object : Callback {
-            override fun onFailure(call: Call?, e: IOException?) {
-                activity.runOnUiThread {
-                    dialog.cancel()
-                    Toast.makeText(activity, "Error network", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call?, response: Response?) {
-                dialog.cancel()
-                val body = JSONObject(response?.body()?.string())
-                activity.song = body
-                val songArr = body.getJSONArray("song")
-                val song = arrayListOf<SongData>()
-                for(item in 0 until songArr.length()){
-                    val key = songArr.getJSONObject(item).getString("key")
-                    val name = songArr.getJSONObject(item).getString("name")
-                    val info = "Blackpink | Album: " + songArr.getJSONObject(item).getString("album")
-                    val year = songArr.getJSONObject(item).getString("year")
-                    song.add(SongData(key, name, info, year, R.id.rl_song_fragment.toString()))
-                    Log.d("song", "$key $name $info $year")
-                }
-
-//                activity.runOnUiThread {
-//                    fragment.song_list_view.adapter = SongListviewAdapter(activity, song)
-//                    activity.bottom_navigation.measure(0,0)
-//                    fragment.song_list_view.layoutParams.height = (activity.sY*100 - activity.bottom_navigation.measuredHeight - activity.navigationBarHeight + activity.statusBarHeight).toInt()
-//                }
-            UpdateUi().adapterForSongListView(activity, fragment, song)
-            }
-
-        })
+        val songArr = activity.song.getJSONArray("song")
+        val song = arrayListOf<SongData>()
+        for(item in 0 until songArr.length()){
+            val key = songArr.getJSONObject(item).getString("key")
+            val name = songArr.getJSONObject(item).getString("name")
+            val info = "Blackpink | Album: " + songArr.getJSONObject(item).getString("album")
+            val year = songArr.getJSONObject(item).getString("year")
+            song.add(SongData(key, name, info, year, R.id.rl_song_fragment.toString()))
+            Log.d("song", "$key $name $info $year")
+        }
+        UpdateUi().adapterForSongListView(activity, fragment, song)
     }
 }

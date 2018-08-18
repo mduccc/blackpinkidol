@@ -33,21 +33,30 @@ class MainActivity : AppCompatActivity() {
     lateinit var mv: JSONObject
 
     lateinit var fragmentEvents: FragmentEvents
+    lateinit var activityEvents: ActivityEvents
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        init()
+        if(savedInstanceState != null){
+            profile = JSONObject(savedInstanceState.getString("profile"))
+            song = JSONObject(savedInstanceState.getString("song"))
+            album = JSONObject(savedInstanceState.getString("album"))
+            mv = JSONObject(savedInstanceState.getString("mv"))
+        }else{
+            profile = JSONObject(intent.getStringExtra("profile"))
+            song = JSONObject(intent.getStringExtra("song"))
+            album = JSONObject(intent.getStringExtra("album"))
+            mv = JSONObject(intent.getStringExtra("mv"))
+        }
         setUI()
         events()
     }
 
-    private fun init(){
-        fragmentEvents = FragmentEvents(this)
-    }
-
     private fun events(){
-        ActivityEvents(this).listen()
+        activityEvents = ActivityEvents(this)
+        activityEvents.listen()
+        fragmentEvents = FragmentEvents(this)
     }
 
     private fun setUI(){
@@ -99,5 +108,13 @@ class MainActivity : AppCompatActivity() {
             }
             else ->{ }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putString("profile", profile.toString())
+        outState?.putString("song", song.toString())
+        outState?.putString("album", album.toString())
+        outState?.putString("mv", mv.toString())
     }
 }
