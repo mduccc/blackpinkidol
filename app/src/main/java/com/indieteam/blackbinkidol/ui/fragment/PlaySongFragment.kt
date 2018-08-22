@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.process.PlaySong
@@ -54,16 +55,17 @@ class PlaySongFragment : Fragment() {
         song_ytb_player_view.addFullScreenListener(object : YouTubePlayerFullScreenListener{
             override fun onYouTubePlayerEnterFullScreen() {
                 (activity as MainActivity).bottom_navigation.visibility = GONE
-                Toast.makeText(activity, "FullScreen", Toast.LENGTH_SHORT).show()
-                (activity as MainActivity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+                //Toast.makeText(activity, "FullScreen", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                (activity as MainActivity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             }
 
             override fun onYouTubePlayerExitFullScreen() {
                 (activity as MainActivity).bottom_navigation.visibility = VISIBLE
-                Toast.makeText(activity, "Exit FullScreen", Toast.LENGTH_SHORT).show()
-                (activity as MainActivity).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+                //Toast.makeText(activity, "Exit FullScreen", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                (activity as MainActivity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             }
-
         })
     }
 

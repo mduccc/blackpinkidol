@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
         val textView = TextView(this)
         textView.text = "BLΛƆKPIИK"
         textView.setTextColor(resources.getColor(R.color.colorWhite))
-        textView.textSize = 25f
+        textView.textSize = 21f
         textView.typeface = Typeface.DEFAULT_BOLD
         textView.measure(0,0)
         textView.x = sX*50 - textView.measuredWidth/2

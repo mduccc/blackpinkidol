@@ -1,9 +1,18 @@
 package com.indieteam.blackbinkidol.ui.activity
 
+import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.graphics.Point
+import android.opengl.Visibility
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.view.WindowManager
+import android.widget.Toast
 import com.indieteam.blackbinkidol.R
 import com.indieteam.blackbinkidol.adapter.ViewpagerAdapter
 import com.indieteam.blackbinkidol.ui.events.ActivityEvents
@@ -12,6 +21,7 @@ import com.indieteam.blackbinkidol.ui.fragment.AlbumFragment
 import com.indieteam.blackbinkidol.ui.fragment.MvFragment
 import com.indieteam.blackbinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackbinkidol.ui.fragment.SongFragment
+import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
@@ -22,15 +32,17 @@ class MainActivity : AppCompatActivity() {
     var statusBarHeight = 0
     var navigationBarHeight = 0
 
-    val profileFragment = ProfileFragment()
-    val songFragment = SongFragment()
-    val albumFragment = AlbumFragment()
-    val mvFragment = MvFragment()
+    lateinit var profileFragment: ProfileFragment
+    lateinit var songFragment: SongFragment
+    lateinit var albumFragment: AlbumFragment
+    lateinit var mvFragment: MvFragment
 
     lateinit var profile: JSONObject
     lateinit var song: JSONObject
     lateinit var album: JSONObject
     lateinit var mv: JSONObject
+    private lateinit var layout: ArrayList<Fragment>
+    var indexViewPagerNow = 0
 
     lateinit var fragmentEvents: FragmentEvents
     lateinit var activityEvents: ActivityEvents
@@ -38,17 +50,36 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if(savedInstanceState != null){
-            profile = JSONObject(savedInstanceState.getString("profile"))
-            song = JSONObject(savedInstanceState.getString("song"))
-            album = JSONObject(savedInstanceState.getString("album"))
-            mv = JSONObject(savedInstanceState.getString("mv"))
-        }else{
-            profile = JSONObject(intent.getStringExtra("profile"))
-            song = JSONObject(intent.getStringExtra("song"))
-            album = JSONObject(intent.getStringExtra("album"))
-            mv = JSONObject(intent.getStringExtra("mv"))
-        }
+
+//        if(savedInstanceState != null){
+//            indexViewPagerNow = savedInstanceState.getString("indexViewPagerNow").toInt()
+//            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        }else{
+//            indexViewPagerNow = 0
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        }
+//
+//        val orientation = getResources().getConfiguration().orientation
+//        Log.d("orientation", orientation.toString())
+//
+//        if(orientation == 1){
+//            bottom_navigation.visibility = VISIBLE
+//        }else{
+//            bottom_navigation.visibility = GONE
+//        }
+
+        profile = JSONObject(intent.getStringExtra("profile"))
+        song = JSONObject(intent.getStringExtra("song"))
+        album = JSONObject(intent.getStringExtra("album"))
+        mv = JSONObject(intent.getStringExtra("mv"))
+
+        profileFragment = ProfileFragment()
+        songFragment = SongFragment()
+        albumFragment = AlbumFragment()
+        mvFragment = MvFragment()
+
+        layout = arrayListOf(profileFragment, songFragment, albumFragment, mvFragment)
+
         setUI()
         events()
     }
@@ -61,20 +92,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUI(){
         getScreen()
-
-        val layout = listOf(profileFragment, songFragment, albumFragment, mvFragment)
         view_pager.adapter = ViewpagerAdapter(supportFragmentManager, layout)
+        view_pager.currentItem = indexViewPagerNow
         view_pager.offscreenPageLimit = 4
-
-//        view_pager.setOnTouchListener { v, event ->
-//            view_pager.currentItem = 0
-//            true
-//        }
     }
 
     private fun getScreen(){
         val manager = windowManager.defaultDisplay
-        val point  = Point()
+        val point = Point()
         manager.getSize(point)
         sX = point.x/100f
         sY = point.y/100f
@@ -87,6 +112,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         this.bottom_navigation.visibility = View.VISIBLE
         if(profileFragment.childFragmentManager.backStackEntryCount == 0 && songFragment.childFragmentManager.backStackEntryCount == 0
                 && albumFragment.childFragmentManager.backStackEntryCount == 0 && mvFragment.childFragmentManager.backStackEntryCount == 0){
@@ -112,9 +138,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putString("profile", profile.toString())
-        outState?.putString("song", song.toString())
-        outState?.putString("album", album.toString())
-        outState?.putString("mv", mv.toString())
+        outState?.putString("indexViewPagerNow", view_pager.currentItem.toString())
     }
 }

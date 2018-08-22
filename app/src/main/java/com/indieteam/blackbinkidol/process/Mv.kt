@@ -27,7 +27,7 @@ class Mv(val activity: MainActivity, val fragment: MvFragment){
             }else{
                 key = "null"
             }
-            Log.d("mvArrrrrrrrrrr", mvArr.getJSONObject(item).getString("key"))
+            Log.d("keySong", mvArr.getJSONObject(item).getString("key"))
             val idVideo = mvArr.getJSONObject(item).getString("youtube")
             mv.add(MvData(idVideo, key))
         }

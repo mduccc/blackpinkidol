@@ -46,7 +46,7 @@ class UpdateUi{
 
         Picasso.get()
                 .load(data.imageProfile)
-                .resize(200,200)
+                .resize(180,180)
                 .centerCrop()
                 .into(view.avatar_image)
     }
