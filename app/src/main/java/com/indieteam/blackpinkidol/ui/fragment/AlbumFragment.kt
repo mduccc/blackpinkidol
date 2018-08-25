@@ -8,8 +8,13 @@ import android.view.ViewGroup
 import com.indieteam.blackpinkidol.R
 import com.indieteam.blackpinkidol.process.Album
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
+import kotlinx.android.synthetic.main.fragment_play_song.*
 
 class AlbumFragment : Fragment() {
+
+    val songFragment = SongFragment()
+    val playSongFragment = PlaySongFragment()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -26,9 +31,14 @@ class AlbumFragment : Fragment() {
 
     fun onBack(): Int {
         val count = childFragmentManager.backStackEntryCount
-        if (count > 0) {
-            childFragmentManager.popBackStackImmediate()
-        }
+
+        if (playSongFragment.fullScreen == 1)
+            playSongFragment.song_ytb_player_view.exitFullScreen()
+        else
+            if (count > 0) {
+                childFragmentManager.popBackStackImmediate()
+            }
+
         return count
     }
 }

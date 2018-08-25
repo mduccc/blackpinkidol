@@ -1,18 +1,12 @@
 package com.indieteam.blackpinkidol.ui.activity
 
-import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.graphics.Point
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.WindowManager
-import android.widget.Toast
 import com.indieteam.blackpinkidol.R
 import com.indieteam.blackpinkidol.adapter.ViewpagerAdapter
 import com.indieteam.blackpinkidol.ui.events.ActivityEvents
@@ -21,7 +15,6 @@ import com.indieteam.blackpinkidol.ui.fragment.AlbumFragment
 import com.indieteam.blackpinkidol.ui.fragment.MvFragment
 import com.indieteam.blackpinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackpinkidol.ui.fragment.SongFragment
-import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
@@ -50,23 +43,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        if(savedInstanceState != null){
-//            indexViewPagerNow = savedInstanceState.getString("indexViewPagerNow").toInt()
-//            window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        }else{
-//            indexViewPagerNow = 0
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        }
-//
-//        val orientation = getResources().getConfiguration().orientation
-//        Log.d("orientation", orientation.toString())
-//
-//        if(orientation == 1){
-//            bottom_navigation.visibility = VISIBLE
-//        }else{
-//            bottom_navigation.visibility = GONE
-//        }
 
         profile = JSONObject(intent.getStringExtra("profile"))
         song = JSONObject(intent.getStringExtra("song"))
@@ -113,6 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         this.bottom_navigation.visibility = View.VISIBLE
         if(profileFragment.childFragmentManager.backStackEntryCount == 0 && songFragment.childFragmentManager.backStackEntryCount == 0
                 && albumFragment.childFragmentManager.backStackEntryCount == 0 && mvFragment.childFragmentManager.backStackEntryCount == 0){
@@ -140,4 +117,5 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
         outState?.putString("indexViewPagerNow", view_pager.currentItem.toString())
     }
+
 }

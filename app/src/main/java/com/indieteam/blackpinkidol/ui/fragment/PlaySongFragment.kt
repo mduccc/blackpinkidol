@@ -10,7 +10,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
 import com.indieteam.blackpinkidol.R
 import com.indieteam.blackpinkidol.process.PlaySong
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
@@ -22,6 +21,7 @@ import org.json.JSONObject
 class PlaySongFragment : Fragment() {
 
     private lateinit var player: PlaySong
+    var fullScreen = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -57,7 +57,9 @@ class PlaySongFragment : Fragment() {
                 (activity as MainActivity).bottom_navigation.visibility = GONE
                 //Toast.makeText(activity, "FullScreen", Toast.LENGTH_SHORT).show()
                 (activity as MainActivity).window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                (activity as MainActivity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                (activity as MainActivity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+                (activity as MainActivity).activityEvents.disableSwipe()
+                fullScreen = 1
             }
 
             override fun onYouTubePlayerExitFullScreen() {
@@ -65,6 +67,8 @@ class PlaySongFragment : Fragment() {
                 //Toast.makeText(activity, "Exit FullScreen", Toast.LENGTH_SHORT).show()
                 (activity as MainActivity).window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
                 (activity as MainActivity).requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                (activity as MainActivity).activityEvents.enableSwipe()
+                fullScreen = 0
             }
         })
     }
