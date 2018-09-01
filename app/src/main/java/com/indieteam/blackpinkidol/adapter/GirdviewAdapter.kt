@@ -14,15 +14,6 @@ class GirdviewAdapter(val activity: MainActivity, val data: ArrayList<AvatarData
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutInflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.layout_avatar, null)
-//        view.avatar_key.text = data[position].key
-//        view.avatar_image.layoutParams.height = 350
-//        view.avatar_name.text = data[position].name
-//
-//        Picasso.get()
-//                .load(data[position].imageProfile)
-//                .resize(200,200)
-//                .centerCrop()
-//                .into(view.avatar_image)
         UpdateUi().layoutAvatar(view, data[position])
         return view
     }

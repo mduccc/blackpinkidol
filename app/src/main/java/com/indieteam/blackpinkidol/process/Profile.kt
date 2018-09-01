@@ -1,20 +1,13 @@
 package com.indieteam.blackpinkidol.process
 
 import android.util.Log
-import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
-import com.indieteam.blackpinkidol.api.Api
 import com.indieteam.blackpinkidol.model.AvatarData
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
 import com.indieteam.blackpinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackpinkidol.ui.update.UpdateUi
-import okhttp3.*
 import org.json.JSONObject
-import java.io.IOException
 
 class Profile(val activity: MainActivity, val fragment: ProfileFragment){
-    private var client = OkHttpClient()
-    private lateinit var dialog: MaterialDialog
 
     fun get(){
         val memberArr = activity.profile.getJSONArray("member")
@@ -29,4 +22,5 @@ class Profile(val activity: MainActivity, val fragment: ProfileFragment){
         }
         UpdateUi().adapterForProfileGirdview(activity, fragment, member)
     }
+
 }

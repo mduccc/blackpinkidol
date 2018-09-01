@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_song.*
 import kotlinx.android.synthetic.main.layout_mv.view.*
 import kotlinx.android.synthetic.main.layout_song.view.*
 import okhttp3.*
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 
@@ -58,18 +59,24 @@ class UpdateUi{
         Picasso.get()
                 .load(Api().youtubeThumbnails(data.idVideo))
                 .into(view.mv_thumbnail)
+
         val rq = Request.Builder()
                 .url(Api().youtubeTitle(data.idVideo))
                 .build()
+
         client.newCall(rq).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {}
 
             override fun onResponse(call: Call?, response: Response?) {
-                val body = JSONObject(response?.body()?.string())
-                val title = body.getString("title")
-                activity.runOnUiThread {
-                    view.mv_title.text = title
-                }
+                val trim = response?.body()?.string().toString()
+                Log.d("title video", trim)
+                try {
+                    val body = JSONObject(trim)
+                    val title = body.getString("title")
+                    activity.runOnUiThread {
+                        view.mv_title.text = title
+                    }
+                }catch (e: JSONException){}
             }
         })
     }

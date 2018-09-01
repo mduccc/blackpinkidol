@@ -13,7 +13,9 @@ import android.view.WindowManager
 import com.indieteam.blackpinkidol.R
 import com.indieteam.blackpinkidol.process.PlaySong
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_play_song.*
 import org.json.JSONObject
@@ -80,17 +82,7 @@ class PlaySongFragment : Fragment() {
             player.ytbPlayerView?.pause()
         }catch (e: Exception){
             Log.d("status_play", "cannot pause")
-        }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        try {
-            Log.d("status_play", "stop")
-            player.ytbPlayerView = null
-            song_ytb_player_view.release()
-        }catch (e: Exception){
-            Log.d("status_play", "cannot stop")
+            player.ytbPlayerView?.pause()
         }
     }
 

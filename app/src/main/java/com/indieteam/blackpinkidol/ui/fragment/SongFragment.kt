@@ -2,13 +2,16 @@ package com.indieteam.blackpinkidol.ui.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.indieteam.blackpinkidol.R
 import com.indieteam.blackpinkidol.process.Song
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.fragment_play_song.*
+import java.security.spec.ECField
 
 class SongFragment : Fragment() {
 

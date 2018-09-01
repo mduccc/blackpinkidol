@@ -1,16 +1,10 @@
 package com.indieteam.blackpinkidol.process
 
 import android.util.Log
-import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
-import com.indieteam.blackpinkidol.api.Api
 import com.indieteam.blackpinkidol.model.AlbumData
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
 import com.indieteam.blackpinkidol.ui.fragment.AlbumFragment
 import com.indieteam.blackpinkidol.ui.update.UpdateUi
-import okhttp3.*
-import org.json.JSONObject
-import java.io.IOException
 
 class Album(val activity: MainActivity, val fragment: AlbumFragment){
 

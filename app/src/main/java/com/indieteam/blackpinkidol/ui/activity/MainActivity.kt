@@ -16,6 +16,7 @@ import com.indieteam.blackpinkidol.ui.fragment.MvFragment
 import com.indieteam.blackpinkidol.ui.fragment.ProfileFragment
 import com.indieteam.blackpinkidol.ui.fragment.SongFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_play_song.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     var statusBarHeight = 0
     var navigationBarHeight = 0
 
-    lateinit var profileFragment: ProfileFragment
+    private lateinit var profileFragment: ProfileFragment
     lateinit var songFragment: SongFragment
     lateinit var albumFragment: AlbumFragment
     lateinit var mvFragment: MvFragment
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var album: JSONObject
     lateinit var mv: JSONObject
     private lateinit var layout: ArrayList<Fragment>
-    var indexViewPagerNow = 0
+    private var indexViewPagerNow = 0
 
     lateinit var fragmentEvents: FragmentEvents
     lateinit var activityEvents: ActivityEvents
@@ -101,21 +102,28 @@ class MainActivity : AppCompatActivity() {
                 profileFragment.onBack()
             }
             1 ->{
+                if(songFragment.childFragmentManager.findFragmentByTag("play_song_fragment") != null){
+                    if(songFragment.playSongFragment.fullScreen != 1)
+                        songFragment.childFragmentManager.findFragmentByTag("play_song_fragment").song_ytb_player_view.release()
+                }
                 songFragment.onBack()
             }
             2 ->{
+                if(albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2") != null){
+                    if(albumFragment.playSongFragment.fullScreen != 1)
+                        albumFragment.childFragmentManager.findFragmentByTag("play_song_fragment2").song_ytb_player_view.release()
+                }
                 albumFragment.onBack()
             }
             3 ->{
+                if(mvFragment.childFragmentManager.findFragmentByTag("play_song_fragment3") != null){
+                    if(mvFragment.playSongFragment.fullScreen != 1)
+                        mvFragment.childFragmentManager.findFragmentByTag("play_song_fragment3").song_ytb_player_view.release()
+                }
                 mvFragment.onBack()
             }
             else ->{ }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putString("indexViewPagerNow", view_pager.currentItem.toString())
     }
 
 }

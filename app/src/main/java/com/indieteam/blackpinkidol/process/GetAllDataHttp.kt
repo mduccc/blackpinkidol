@@ -1,16 +1,13 @@
 package com.indieteam.blackpinkidol.process
 
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
-import com.afollestad.materialdialogs.MaterialDialog
 import com.indieteam.blackpinkidol.api.Api
-import com.indieteam.blackpinkidol.model.AlbumData
 import com.indieteam.blackpinkidol.ui.activity.MainActivity
 import com.indieteam.blackpinkidol.ui.activity.SplashActivity
-import com.indieteam.blackpinkidol.ui.update.UpdateUi
 import es.dmoral.toasty.Toasty
 import okhttp3.*
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.util.*
@@ -36,7 +33,7 @@ class GetAllDataHttp(val activity: SplashActivity){
 
     }
 
-    fun getProfile(){
+    private fun getProfile(){
         val rq = Request.Builder()
                 .url(Api().apiProfile)
                 .build()
@@ -44,19 +41,21 @@ class GetAllDataHttp(val activity: SplashActivity){
         client.newCall(rq).enqueue(object : Callback {
             override fun onFailure(call: Call?, e: IOException?) {
                 activity.runOnUiThread {
-                    Toasty.warning(activity, "No Network", Toast.LENGTH_SHORT, true).show();
+                    Toasty.warning(activity, "No Network", Toast.LENGTH_SHORT, true).show()
                 }
             }
 
             override fun onResponse(call: Call?, response: Response?) {
-                val body = JSONObject(response?.body()?.string())
-                profile = body
-                profileCallbackCode = 1
+                try {
+                    val body = JSONObject(response?.body()?.string())
+                    profile = body
+                    profileCallbackCode = 1
+                }catch (e: JSONException){}
             }
         })
     }
 
-    fun getSong(){
+    private fun getSong(){
         val rq = Request.Builder()
                 .url(Api().apiSong)
                 .build()
@@ -68,14 +67,16 @@ class GetAllDataHttp(val activity: SplashActivity){
             }
 
             override fun onResponse(call: Call?, response: Response?) {
-                val body = JSONObject(response?.body()?.string())
-                song = body
-                songCallbackcode = 1
+                try {
+                    val body = JSONObject(response?.body()?.string())
+                    song = body
+                    songCallbackcode = 1
+                }catch (e: JSONException){}
             }
         })
     }
 
-    fun getAlbum(){
+    private fun getAlbum(){
         val rq = Request.Builder()
                 .url(Api().apiAlbum)
                 .build()
@@ -87,14 +88,16 @@ class GetAllDataHttp(val activity: SplashActivity){
             }
 
             override fun onResponse(call: Call?, response: Response?) {
-                val body = JSONObject(response?.body()?.string())
-                album = body
-                albumCallbackCode = 1
+                try {
+                    val body = JSONObject(response?.body()?.string())
+                    album = body
+                    albumCallbackCode = 1
+                }catch (e: JSONException){}
             }
         })
     }
 
-    fun getMv(){
+    private fun getMv(){
         val rq = Request.Builder()
                 .url(Api().apiMv)
                 .build()
@@ -106,14 +109,16 @@ class GetAllDataHttp(val activity: SplashActivity){
             }
 
             override fun onResponse(call: Call?, response: Response?) {
-                val body = JSONObject(response?.body()?.string())
-                mv = body
-                mvCallbackCode = 1
+                try {
+                    val body = JSONObject(response?.body()?.string())
+                    mv = body
+                    mvCallbackCode = 1
+                }catch (e: Exception){}
             }
         })
     }
 
-    fun callbackResult(){
+    private fun callbackResult(){
         Timer().scheduleAtFixedRate(0, 500){
             if(profileCallbackCode == 1 &&
                     songCallbackcode ==1 &&
